@@ -14,6 +14,10 @@ public class FeedbackMaster : MonoBehaviour
     [SerializeField]
     Dictionary<string, AnswerSheet> answerSheets;
 
+
+
+    List<PatientReport> patientReports;
+
     private void Awake()
     {
         if(Instance !=null && Instance != this)
@@ -25,6 +29,7 @@ public class FeedbackMaster : MonoBehaviour
         Instance = this;
         allPerformedActionsPerPatient = new Dictionary<string, List<Entry>>();
         answerSheets = new Dictionary<string, AnswerSheet>();
+        patientReports = new List<PatientReport>();
         //allRequiredActions = new List<Entry>(); //load all required actions from requirements. either from patients or from some LevelInfo class
 
         //if(answerSheets==null || answerSheets.Count ==0) 
@@ -42,15 +47,15 @@ public class FeedbackMaster : MonoBehaviour
         }
         allPerformedActionsPerPatient[patientID].Add(new Entry(actionName, playerID, patientID, teamNumber));
     }
-    public void AddEntry()
-    {
-        //parse log
-        int teamNumber = 0; //parse from log
-        string playerid = "someone"; //parse from log
-        string patientid = "A"; //parse from log
-        string actionName = "1";
-        AddEntry(actionName, playerid, patientid, teamNumber);
-    }
+    //public void AddEntry()
+    //{
+    //    //parse log
+    //    int teamNumber = 0; //parse from log
+    //    string playerid = "someone"; //parse from log
+    //    string patientid = "A"; //parse from log
+    //    string actionName = "1";
+    //    AddEntry(actionName, playerid, patientid, teamNumber);
+    //}
     [ContextMenu("AddEntryB")]
     public void AddEntryB()
     {
@@ -104,8 +109,8 @@ public class FeedbackMaster : MonoBehaviour
             AnswerSheet answer = answerSheets[patientEntryList_pair.Key];
             List<Entry> entries = patientEntryList_pair.Value;
 
-            int correctTotal = answer.actions.Count;
-            int runningTotal = 0;
+            //int correctTotal = answer.actions.Count;
+            //int runningTotal = 0;
 
             List<string> performedActions = new List<string>();
 
@@ -115,10 +120,16 @@ public class FeedbackMaster : MonoBehaviour
             }
 
             List<string> missingRequiredActions = answer.actions.Except(performedActions).ToList();
-
+            PatientReport pr = new PatientReport();
+            pr.answerSheet = answer;
+            pr.treatingTeamNumber = entries[0].teamNumber; //assuming they're all the same TBF
+            pr.performedActions = performedActions;
+            patientReports.Add(pr);
+           
             if (missingRequiredActions.Count == 0)
             {
                 print($"Patient {patientEntryList_pair.Key} was treated correctly");
+
             }
             else
             {
@@ -127,8 +138,6 @@ public class FeedbackMaster : MonoBehaviour
                 {
                     print($"{item} not performed on {patientEntryList_pair.Key}");
                 }
-
-
             }
         }
 
@@ -156,7 +165,29 @@ public class FeedbackMaster : MonoBehaviour
         //    }
         //}
     }
+    public void DisplayPatientReports()
+    {
+        if(patientReports==null || patientReports.Count==0)
+        {
+            Debug.LogError("no patient reports");
+            return;
+        }
 
+        foreach (var patient in patientReports)
+        {
+            //print 
+            string allActions = "";
+            foreach (var item in patient.answerSheet.actions)
+            {
+                string mark = patient.performedActions.Contains(item) ? "V" : "X";
+                if ()
+                {
+                    allActions+=
+                }
+            }
+            print($"{patient.answerSheet.patientID} - {patient.}");
+        }
+    }
     public void AddPatient(AnswerSheet answerSheet)
     {
         answerSheets.Add(answerSheet.patientID, answerSheet);
