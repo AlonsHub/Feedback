@@ -85,6 +85,16 @@ public class FeedbackMaster : MonoBehaviour
          patientid = "A"; //parse from log
          actionName = "1";
         AddEntry(actionName, playerid, patientid, teamNumber);
+        teamNumber = 0; //parse from log
+         playerid = "someone"; //parse from log
+         patientid = "D"; //parse from log
+         actionName = "1";
+        AddEntry(actionName, playerid, patientid, teamNumber);
+        teamNumber = 0; //parse from log
+         playerid = "someone"; //parse from log
+         patientid = "C"; //parse from log
+         actionName = "5";
+        AddEntry(actionName, playerid, patientid, teamNumber);
 
     }
     [ContextMenu("SCORE")]
@@ -140,7 +150,7 @@ public class FeedbackMaster : MonoBehaviour
                 }
             }
         }
-
+        DisplayPatientReports();
         ////compare required and performed
         //foreach (var item in answerSheets)
         //{
@@ -165,6 +175,7 @@ public class FeedbackMaster : MonoBehaviour
         //    }
         //}
     }
+    [ContextMenu("Report")]
     public void DisplayPatientReports()
     {
         if(patientReports==null || patientReports.Count==0)
@@ -180,12 +191,9 @@ public class FeedbackMaster : MonoBehaviour
             foreach (var item in patient.answerSheet.actions)
             {
                 string mark = patient.performedActions.Contains(item) ? "V" : "X";
-                if ()
-                {
-                    allActions+=
-                }
+                allActions = $"{allActions}\n {item} {mark}";
             }
-            print($"{patient.answerSheet.patientID} - {patient.}");
+            print($"{patient.answerSheet.patientID} - {allActions}");
         }
     }
     public void AddPatient(AnswerSheet answerSheet)
