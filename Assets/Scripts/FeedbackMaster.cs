@@ -47,15 +47,7 @@ public class FeedbackMaster : MonoBehaviour
         }
         allPerformedActionsPerPatient[patientID].Add(new Entry(actionName, playerID, patientID, teamNumber));
     }
-    //public void AddEntry()
-    //{
-    //    //parse log
-    //    int teamNumber = 0; //parse from log
-    //    string playerid = "someone"; //parse from log
-    //    string patientid = "A"; //parse from log
-    //    string actionName = "1";
-    //    AddEntry(actionName, playerid, patientid, teamNumber);
-    //}
+    
     [ContextMenu("AddEntryB")]
     public void AddEntryB()
     {
@@ -129,7 +121,7 @@ public class FeedbackMaster : MonoBehaviour
                 performedActions.Add(entry.action);
             }
 
-            List<string> missingRequiredActions = answer.actions.Except(performedActions).ToList();
+            List<string> missingRequiredActions = answer.correctActions.Except(performedActions).ToList();
             PatientReport pr = new PatientReport();
             pr.answerSheet = answer;
             pr.treatingTeamNumber = entries[0].teamNumber; //assuming they're all the same TBF
@@ -188,7 +180,7 @@ public class FeedbackMaster : MonoBehaviour
         {
             //print 
             string allActions = "";
-            foreach (var item in patient.answerSheet.actions)
+            foreach (var item in patient.answerSheet.correctActions)
             {
                 string mark = patient.performedActions.Contains(item) ? "V" : "X";
                 allActions = $"{allActions}\n {item} {mark}";

@@ -19,7 +19,7 @@ public class Entry : IEqualityComparer
 
     public new bool Equals(object x, object y)
     {
-        return ((Entry)x).action==((Entry)y).action && ((Entry)x).patientID == ((Entry)y).patientID;
+        return ((Entry)x).action==((Entry)y).action && ((Entry)x).patientID == ((Entry)y).patientID; //this is kind of meaningless now...
     }
 
     public int GetHashCode(object obj)
