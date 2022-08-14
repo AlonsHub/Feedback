@@ -19,7 +19,7 @@ public abstract class Treatment : SequenceBlock
     //may be either playerDataDelta - or Answer to question
     public abstract object Result();
 
-    public bool WasPerformed()
+    public override bool WasPerformed()
     {
         return false;
     }

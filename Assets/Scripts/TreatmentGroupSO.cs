@@ -4,9 +4,5 @@ using UnityEngine;
 [CreateAssetMenu()]
 public class TreatmentGroupSO : ScriptableObject
 {
-    
-
     public TreatmentGroup treatmentGroup;
-
-    
 }

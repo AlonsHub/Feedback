@@ -8,9 +8,13 @@ using UnityEngine;
 /// Single Treatment blocks make for are stricter sequence. If a procedure requires clear steps one after another - only SingleTreatment blocks will be used.
 /// But some treatments are not sequentially consequential - and can happen with no regard to order. Those treatments will be a one TreatmentGroup.
 /// </summary>
-public interface SequenceBlock 
+[System.Serializable]
+public class SequenceBlock : ScriptableObject
 {
     //Treatment blocks need:
     //bool isComplete;
-    bool WasPerformed();
+    public virtual bool WasPerformed()
+    {
+        return true;
+    }
 }
