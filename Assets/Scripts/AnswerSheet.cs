@@ -18,6 +18,7 @@ public class AnswerSheet : MonoBehaviour
     {
         FeedbackMaster.Instance.AddPatient(this);
     }
+   
 
     void SetActions()
     {
