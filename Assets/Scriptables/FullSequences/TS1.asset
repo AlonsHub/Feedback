@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: TS1
   m_EditorClassIdentifier: 
   sequenceBlocks:
-  - {fileID: 11400000, guid: 508fd40db9e43214ba4fca5eda15911a, type: 2}
+  - {fileID: 11400000, guid: 9582b152b83035445b0045dee6189b00, type: 2}
   - {fileID: 11400000, guid: 2f26648568facc7489915692bbdd4657, type: 2}
+  - {fileID: 11400000, guid: 9582b152b83035445b0045dee6189b00, type: 2}
+  - {fileID: 11400000, guid: 6496aa7cd2f024347ab29ce85e052cdb, type: 2}
