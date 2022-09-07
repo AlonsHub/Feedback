@@ -4,10 +4,26 @@ using UnityEngine;
 [System.Serializable, CreateAssetMenu()]
 public class Question : Treatment
 {
+
     [SerializeField]
-    string answer;
+    string questionText;
+    [SerializeField]
+    string answerText;
+    /// <summary>
+    /// Inits questions.
+    /// Should be called when creating a new question
+    /// </summary>
+    /// <param name="newID">for the Treatment Set() - TBF needs to be pulled from the last used ID, and add 1</param>
+    /// <param name="newAnswer">specific patient reply</param>
+    public Question SetQuestion(string newID,string newQuestion, string newAnswer)
+    {
+        questionText = newQuestion;
+        answerText = newAnswer;
+        base.Set(newID);
+        return this;
+    }
     public override object Result()
     {
-        return answer;
+        return answerText;
     }
 }

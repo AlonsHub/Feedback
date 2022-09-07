@@ -11,6 +11,15 @@ public abstract class Treatment : SequenceBlock
 {
     [SerializeField]
     protected string id;
+
+    /// <summary>
+    /// Only to be used by inheretors
+    /// </summary>
+    /// <param name="newID">TBF pull from last ID used somehow</param>
+    protected virtual void Set(string newID)
+    {
+        id = newID;
+    }
     //identification of question, test or device
     public virtual string ID()
     {
