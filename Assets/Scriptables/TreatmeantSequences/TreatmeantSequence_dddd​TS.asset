@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1686709178434df41a08d63b255e1f55, type: 3}
-  m_Name: medicin1
+  m_Script: {fileID: 11500000, guid: df3835838a7c31e4ca86ac20e88238e0, type: 3}
+  m_Name: "TreatmeantSequence_dddd\u200BTS"
   m_EditorClassIdentifier: 
-  id: 
+  sequenceBlocks: []

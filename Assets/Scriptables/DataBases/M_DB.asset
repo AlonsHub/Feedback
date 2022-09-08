@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9461265e1a2ec8248ac8146d494a3342, type: 3}
   m_Name: M_DB
   m_EditorClassIdentifier: 
-  treatments: []
+  treatments:
+  - {fileID: 11400000, guid: 9259b85dc85f88541b514dc678358023, type: 2}
+  - {fileID: 11400000, guid: ee1f797845d795043bf7b880ad608624, type: 2}
+  - {fileID: 11400000, guid: 3fa31a5182976a242bacb1f4c4324ef6, type: 2}
+  - {fileID: 11400000, guid: 16257f6b028451e4c8b1a88f1b609eda, type: 2}
   tempTreatments: []
