@@ -20,12 +20,13 @@ public class TreatmentSequenceEditorWindow : MonoBehaviour
     {
         newPatient = patient;
         newTreatmeantSequence = newPatient.GetTreatmeantSequence;
+        sequenceDisplayer.Set(newPatient.GetTreatmeantSequence);
     }
     [ContextMenu("Refresh")]
     public void RefreshDisplay()
     {
         //sequenceTextBox.text = newPatient.GetTreatmeantSequence.AllDisplayStrings();
-        sequenceDisplayer.Set(newPatient.GetTreatmeantSequence);
+        sequenceDisplayer.Display();
     }
 
     //BASE logic for all ADD TREATMENT types

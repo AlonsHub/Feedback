@@ -7,19 +7,27 @@ public class ChooseTestWindow : MonoBehaviour
 {
 
     [SerializeField]
+    UnityEngine.UI.Toggle doClose;
+    [SerializeField]
     TMP_Dropdown dropdown;
     [SerializeField]
-    TestDatabase testDatabase; 
+    TestDatabase testDatabase;
 
-
+    [SerializeField]
+    TreatmentSequenceEditorWindow treatmentSequenceEditorWindow;
     private void OnEnable()
     {
-        if(!testDatabase)
+        if (!testDatabase)
         {
             Debug.LogError("Test database not found!");
             return;
         }
 
+        RefreshDropdownTests();
+    }
+
+    private void RefreshDropdownTests()
+    {
         dropdown.ClearOptions();
         dropdown.AddOptions(testDatabase.GetListOfTreatmentNames());
         dropdown.RefreshShownValue();
@@ -27,6 +35,10 @@ public class ChooseTestWindow : MonoBehaviour
 
     public void OnClickAdd()
     {
-
+        treatmentSequenceEditorWindow.AddTreatmentToSequence(testDatabase.GetTreatmentByIndex(dropdown.value));
+        if(doClose.isOn)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
