@@ -13,6 +13,11 @@ public class SequenceBlock : ScriptableObject
 {
     //Treatment blocks need:
     //bool isComplete;
+    public virtual string DisplayStringAsPartOfSequence()
+    {
+        return "impossible";
+    }
+
     public virtual bool WasPerformed()
     {
         return true;

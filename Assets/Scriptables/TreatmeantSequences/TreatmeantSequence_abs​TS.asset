@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c88384be05c98cf4c85df8b1682ca38d, type: 3}
-  m_Name: t1
+  m_Script: {fileID: 11500000, guid: df3835838a7c31e4ca86ac20e88238e0, type: 3}
+  m_Name: "TreatmeantSequence_abs\u200BTS"
   m_EditorClassIdentifier: 
-  id: 
-  testName: BloodTest
-  response: 
+  sequenceBlocks: []

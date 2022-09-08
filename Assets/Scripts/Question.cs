@@ -26,4 +26,12 @@ public class Question : Treatment
     {
         return answerText;
     }
+    public override string DisplayStringAsPartOfSequence()
+    {
+        return $"שאלה:{questionText} \n תשובה:{answerText}";
+    }
+    public override string TreatmentDisplayNameAsPartOfDatabase()
+    {
+        return questionText;
+    }
 }

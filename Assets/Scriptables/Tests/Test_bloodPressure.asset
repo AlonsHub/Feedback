@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f1a5be6ed880134d9525bceccf586a4, type: 3}
-  m_Name: Patient_q_7-15
+  m_Script: {fileID: 11500000, guid: c88384be05c98cf4c85df8b1682ca38d, type: 3}
+  m_Name: Test_bloodPressure
   m_EditorClassIdentifier: 
-  paitent_name: 
-  paitent_age: 
-  paitent_FullTreatmentSequence: {fileID: 0}
+  id: 1
+  testName: "\u05DC\u05D7\u05E5 \u05D3\u05DD"
+  response: 

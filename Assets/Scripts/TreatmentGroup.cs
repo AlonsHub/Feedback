@@ -29,4 +29,17 @@ public class TreatmentGroup : SequenceBlock // a group of actions that may be pe
         return true;
     }
 
+    public override string DisplayStringAsPartOfSequence()
+    {
+        if (treatments.Count == 0)
+            return "";
+
+        string toReturn = "";// treatments[0].DisplayString();
+        for (int i = 0; i < treatments.Count; i++)
+        {
+            toReturn += $"{treatments[i]}\n";
+        }
+        return base.DisplayStringAsPartOfSequence();
+    }
+
 }

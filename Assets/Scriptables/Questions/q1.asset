@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: q1
   m_EditorClassIdentifier: 
   id: sss
-  answer: 
+  questionText: sad
+  answerText: yes

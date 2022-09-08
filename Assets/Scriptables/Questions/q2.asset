@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: q2
   m_EditorClassIdentifier: 
   id: av
-  answer: 
+  questionText: why
+  answerText: cuz

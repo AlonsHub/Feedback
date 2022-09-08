@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: t2
   m_EditorClassIdentifier: 
   id: 
+  testName: SugarTest
   response: 

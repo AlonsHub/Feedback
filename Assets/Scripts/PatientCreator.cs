@@ -11,6 +11,7 @@ public static class PatientCreator
         Patient patient = SO_Creator<Patient>.CreateT(newID);
 
         //set patient TBF
+        patient.Init(patientName, age);
 
         return patient;
     }

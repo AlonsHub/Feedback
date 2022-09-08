@@ -25,6 +25,15 @@ public abstract class Treatment : SequenceBlock
     {
         return id;
     }
+    /// <summary>
+    /// each treatment should decide which string to expose as its name
+    /// </summary>
+    /// <returns></returns>
+    public virtual string TreatmentDisplayNameAsPartOfDatabase()
+    {
+        return id;
+    }
+
     //may be either playerDataDelta - or Answer to question
     public abstract object Result();
 

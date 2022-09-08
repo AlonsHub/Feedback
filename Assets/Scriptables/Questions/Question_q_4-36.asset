@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c88384be05c98cf4c85df8b1682ca38d, type: 3}
-  m_Name: t1
+  m_Script: {fileID: 11500000, guid: f77a9133af1571c43a930be30885686c, type: 3}
+  m_Name: Question_q_4-36
   m_EditorClassIdentifier: 
   id: 
-  testName: BloodTest
-  response: 
+  questionText: 
+  answerText: 

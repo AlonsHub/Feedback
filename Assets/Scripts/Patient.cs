@@ -14,13 +14,30 @@ public class Patient : ScriptableObject
     //temp data TBF - needs to be the patientMeasurement class from the project
     object patientData;
 
+
     //Treatment sequence!
     [SerializeField]//?
     TreatmeantSequence paitent_FullTreatmentSequence;
+    public TreatmeantSequence GetTreatmeantSequence { get=> paitent_FullTreatmentSequence; }
 
-    public void CreateNewTreatmentSequence()
+    //public SequenceBlock SequenceBlock(int i) => 
+
+    public void Init(string newName, string newAge)
     {
-        paitent_FullTreatmentSequence = CreateInstance<TreatmeantSequence>();
+        paitent_name = newName;
+        paitent_age = newAge;
+        CreateNewTreatmentSequence();
     }
+    private void CreateNewTreatmentSequence()
+    {
+        //paitent_FullTreatmentSequence = CreateInstance<TreatmeantSequence>();
+        paitent_FullTreatmentSequence = SO_Creator<TreatmeantSequence>.CreateT($"{paitent_name}TS");
+        paitent_FullTreatmentSequence.Init();
+    }
+
+    //public void AddToTreatmentSequence(SequenceBlock sequenceBlock)
+    //{
+
+    //}
 
 }
