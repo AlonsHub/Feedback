@@ -1,12 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable, CreateAssetMenu()]
-public class TreatmeantSequence : ScriptableObject
+public class TreatmentSequence : ScriptableObject, IBlockCollection
 {
     public List<SequenceBlock> sequenceBlocks;
 
     public System.Action OnSequenceChange;
+
+
 
     public void Init()
     {
@@ -78,4 +81,14 @@ public class TreatmeantSequence : ScriptableObject
 
         return toReturn;
     }
+
+    public List<SequenceBlock> SequenceBlocks() => sequenceBlocks;
+    
+
+    public void OnListChanged(System.Action func)
+    {
+        OnSequenceChange += func;
+    }
+
+    
 }

@@ -1,34 +1,43 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable, CreateAssetMenu()]
-public class TreatmentGroup : SequenceBlock // a group of actions that may be performed in NO particular order
+public class TreatmentGroup : SequenceBlock, IBlockCollection // a group of actions that may be performed in NO particular order
 {
     //List<Treatment> treatments; // => new List<Treatment>() with tests and questions
 
     [SerializeField]
-    List<Treatment> treatments;
-    //[SerializeField]
-    //List<TestSO> testsSO;
-    //[SerializeField]
-    //List<QuestionSO> questionsSO;
+    List<SequenceBlock> treatments; //Could be a list of sequence blocks...
+  
+    public System.Action OnSequenceChange;
 
-    //public List<Treatment> GetTreatments()
-    //{
-    //    treatments = new List<Treatment>();
-    //    foreach (var item in treatmentSOs)
-    //    {
-    //        treatments.Add(item.Treatment());
-    //    }
-         
-    //    return treatments;
-    //}
+    public void Init()
+    {
+        treatments = new List<SequenceBlock>();
+    }
+
+    public void AddTreatment(SequenceBlock t)
+    {
+        treatments.Add(t);
+        OnSequenceChange?.Invoke();
+    }
+    public void RemoveTreatment(SequenceBlock t)
+    {
+        treatments.Remove(t);
+        OnSequenceChange?.Invoke();
+    }
 
     public override bool WasPerformed()
     {
+        foreach (var item in treatments)
+        {
+            if (!item.WasPerformed())
+                return false;
+        }
         return true;
     }
-
+    public string AllDisplayStrings() => DisplayStringAsPartOfSequence();
     public override string DisplayStringAsPartOfSequence()
     {
         if (treatments.Count == 0)
@@ -42,4 +51,13 @@ public class TreatmentGroup : SequenceBlock // a group of actions that may be pe
         return base.DisplayStringAsPartOfSequence();
     }
 
+    public List<SequenceBlock> SequenceBlocks()
+    {
+        return treatments;
+    }
+
+    public void OnListChanged(Action func)
+    {
+        OnSequenceChange += func;
+    }
 }

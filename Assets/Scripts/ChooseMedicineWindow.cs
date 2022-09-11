@@ -21,7 +21,7 @@ public class ChooseMedicineWindow : MonoBehaviour
     MedicineDB medicineDatabase;
 
     [SerializeField]
-    TreatmentSequenceEditorWindow treatmentSequenceEditorWindow;
+    IBlockCollectionEditor treatmentSequenceEditorWindow;
 
     private void OnEnable()
     {
@@ -50,7 +50,7 @@ public class ChooseMedicineWindow : MonoBehaviour
         med.SetPatientData(TEMP_patientData.text); //This needs to just send patientMeasurementData tbf
         //Set med's result (as PatientMeasurementData - taken from the PatientMeasurementInput TBF!
 
-        treatmentSequenceEditorWindow.AddTreatmentToSequence(med);
+        treatmentSequenceEditorWindow.AddTreatmentToCollection(med);
         if (doClose.isOn)
         {
             gameObject.SetActive(false);

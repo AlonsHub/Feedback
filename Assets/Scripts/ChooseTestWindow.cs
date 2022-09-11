@@ -14,7 +14,7 @@ public class ChooseTestWindow : MonoBehaviour
     TestDatabase testDatabase;
 
     [SerializeField]
-    TreatmentSequenceEditorWindow treatmentSequenceEditorWindow;
+    IBlockCollectionEditor treatmentSequenceEditorWindow;
     private void OnEnable()
     {
         if (!testDatabase)
@@ -35,7 +35,7 @@ public class ChooseTestWindow : MonoBehaviour
 
     public void OnClickAdd()
     {
-        treatmentSequenceEditorWindow.AddTreatmentToSequence(testDatabase.GetTreatmentByIndex(dropdown.value));
+        treatmentSequenceEditorWindow.AddTreatmentToCollection(testDatabase.GetTreatmentByIndex(dropdown.value));
         if(doClose.isOn)
         {
             gameObject.SetActive(false);

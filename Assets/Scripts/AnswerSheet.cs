@@ -11,7 +11,7 @@ public class AnswerSheet : MonoBehaviour
     //held on patients - describes the actions required by the exam
     public string patientID;
     public List<string> correctActions;
-    public TreatmeantSequence treatmeantSequence;
+    public TreatmentSequence treatmeantSequence;
     public DestinationRoom destinationRoom;
 
     private void Start()

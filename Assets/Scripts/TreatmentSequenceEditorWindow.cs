@@ -2,25 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TreatmentSequenceEditorWindow : MonoBehaviour
+public class TreatmentSequenceEditorWindow : IBlockCollectionEditor
 {
     Patient newPatient;
 
-    TreatmeantSequence newTreatmeantSequence;
+    TreatmentSequence newTreatmeantSequence;
 
 
     [SerializeField]
     TreatmentSequenceDisplayer sequenceDisplayer;
 
-    //[SerializeField]
-    //NewQuestionWindow newQuestionWindow;
-
-    public System.Action OnSequenceChange;
+    
     public void Init(Patient patient)
     {
         newPatient = patient;
         newTreatmeantSequence = newPatient.GetTreatmeantSequence;
-        sequenceDisplayer.Set(newPatient.GetTreatmeantSequence);
+        sequenceDisplayer.Set(newTreatmeantSequence as IBlockCollection);
     }
     [ContextMenu("Refresh")]
     public void RefreshDisplay()
@@ -30,14 +27,14 @@ public class TreatmentSequenceEditorWindow : MonoBehaviour
     }
 
     //BASE logic for all ADD TREATMENT types
-     public void AddTreatmentToSequence(SequenceBlock sequenceBlock)
+    public override void AddTreatmentToCollection(SequenceBlock sequenceBlock)
     {
-        if(!newPatient || !newPatient.GetTreatmeantSequence)
+        if (!newPatient || !newPatient.GetTreatmeantSequence)
         {
             Debug.LogError("missing patient or treatmentsequence");
             return;
         }
         newTreatmeantSequence.AddToSequence(sequenceBlock);
     }
-   
+
 }
