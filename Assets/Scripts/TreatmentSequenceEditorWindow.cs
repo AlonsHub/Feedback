@@ -8,7 +8,8 @@ public class TreatmentSequenceEditorWindow : IBlockCollectionEditor
 
     TreatmentSequence newTreatmeantSequence;
 
-
+    [SerializeField]
+    TreatmentGroupEditor treatmentGroupEditor;
     [SerializeField]
     TreatmentSequenceDisplayer sequenceDisplayer;
 
@@ -37,4 +38,9 @@ public class TreatmentSequenceEditorWindow : IBlockCollectionEditor
         newTreatmeantSequence.AddToSequence(sequenceBlock);
     }
 
+    public void OpenTreatmentGroupEditor()
+    {
+        treatmentGroupEditor.gameObject.SetActive(true);
+        treatmentGroupEditor.Init(newPatient);
+    }
 }

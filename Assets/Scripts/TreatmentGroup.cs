@@ -46,9 +46,9 @@ public class TreatmentGroup : SequenceBlock, IBlockCollection // a group of acti
         string toReturn = "";// treatments[0].DisplayString();
         for (int i = 0; i < treatments.Count; i++)
         {
-            toReturn += $"{treatments[i]}\n";
+            toReturn += $"{treatments[i].DisplayStringAsPartOfSequence()}\n";
         }
-        return base.DisplayStringAsPartOfSequence();
+        return toReturn;
     }
 
     public List<SequenceBlock> SequenceBlocks()

@@ -9,6 +9,8 @@ public class TreatmentGroupEditor : IBlockCollectionEditor
     TreatmentGroup treatmentGroup;
 
     [SerializeField]
+    TreatmentSequenceEditorWindow treatmentSequenceEditorWindow;
+    [SerializeField]
     TreatmentSequenceDisplayer sequenceDisplayer; //also works for treatmentGroup
 
     public System.Action OnSequenceChange;
@@ -16,18 +18,21 @@ public class TreatmentGroupEditor : IBlockCollectionEditor
     {
         newPatient = p;
         treatmentGroup = SO_Creator<TreatmentGroup>.CreateT(p.paitent_name);
+        treatmentGroup.Init();
+
+        treatmentGroup.OnSequenceChange += sequenceDisplayer.Display;
 
         sequenceDisplayer.Set(treatmentGroup as IBlockCollection);
     }
 
     public override void AddTreatmentToCollection(SequenceBlock sequenceBlock)
     {
-        if (!newPatient || !newPatient.GetTreatmeantSequence)
+        if (!newPatient )
         {
-            Debug.LogError("missing patient or treatmentsequence");
+            Debug.LogError("missing patient");
             return;
         }
-        treatmentGroup.AddTreatment(sequenceBlock);
+        treatmentGroup.AddTreatment(sequenceBlock as Treatment);
     }
 
     public void RefreshDisplay()
@@ -35,4 +40,10 @@ public class TreatmentGroupEditor : IBlockCollectionEditor
         sequenceDisplayer.Display();
     }
 
+    public void AddTreatmentGroupToSequence()
+    {
+        treatmentSequenceEditorWindow.AddTreatmentToCollection(treatmentGroup);
+
+        gameObject.SetActive(false);
+    }
 }

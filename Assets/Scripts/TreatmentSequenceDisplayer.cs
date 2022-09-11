@@ -11,12 +11,12 @@ public class TreatmentSequenceDisplayer : MonoBehaviour
     //TBF - make these SequenceBlockDisplayer instead of just one text box with several lines or several textBoxes
     [SerializeField]
     TMPro.TMP_Text textBox;
-    public void Set(TreatmentSequence ts)
-    {
-        treatmeantSequence = ts;
-        ts.OnSequenceChange += Display;
-        Display();
-    }
+    //public void Set(TreatmentSequence ts)
+    //{
+    //    treatmeantSequence = ts;
+    //    ts.OnSequenceChange += Display;
+    //    Display();
+    //}
     public void Set(IBlockCollection blockCollection)
     {
         treatmeantSequence = blockCollection;

@@ -25,7 +25,7 @@ public static class SO_Creator<T> where T : ScriptableObject
         T t = ScriptableObject.CreateInstance<T>();
         
         //AssetDatabase.CreateAsset(t, $"{scriptableObjects_FolderPath}/{subFolderName}/{nameof(T)}_{newID}.asset");
-        AssetDatabase.CreateAsset(t, $"{scriptableObjects_FolderPath}{t.GetType()}s/{t.GetType()}_{newID}.asset");
+        AssetDatabase.CreateAsset(t, $"{scriptableObjects_FolderPath}{t.GetType()}s/{newID}_{t.GetType()}.asset");
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
         return t;
