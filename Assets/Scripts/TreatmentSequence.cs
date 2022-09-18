@@ -81,14 +81,38 @@ public class TreatmentSequence : ScriptableObject, IBlockCollection
 
         return toReturn;
     }
+    public List<string> ListAllDisplayStrings()
+    {
+        if (sequenceBlocks.Count == 0)
+            return null;
+
+        List<string> toReturn = new List<string>();// treatments[0].DisplayString();
+        for (int i = 0; i < sequenceBlocks.Count; i++)
+        {
+            toReturn.Add(sequenceBlocks[i].DisplayStringAsPartOfSequence());
+        }
+        return toReturn;
+    }
 
     public List<SequenceBlock> SequenceBlocks() => sequenceBlocks;
     
 
-    public void OnListChanged(System.Action func)
+    public void SubToOnListChanged(System.Action func)
     {
         OnSequenceChange += func;
     }
+   
+    public void MoveIndex(int index, int movement)
+    {
+        if (index + movement >= sequenceBlocks.Count || index + movement < 0)
+        {
+            Debug.LogError("cant move treatment in that direction");
+            return;
+        }
 
-    
+        SequenceBlock temp = sequenceBlocks[index];
+        sequenceBlocks[index] = sequenceBlocks[index + movement];
+        sequenceBlocks[index + movement] = temp;
+        OnSequenceChange?.Invoke();
+    }
 }

@@ -6,19 +6,21 @@ public class TreatmentSequenceEditorWindow : IBlockCollectionEditor
 {
     Patient newPatient;
 
-    TreatmentSequence newTreatmeantSequence;
+    public TreatmentSequence newTreatmeantSequence { get => (TreatmentSequence)blockCollection; set => blockCollection = value; }
+
 
     [SerializeField]
     TreatmentGroupEditor treatmentGroupEditor;
     [SerializeField]
-    TreatmentSequenceDisplayer sequenceDisplayer;
+    BlockCollectionDisplayer sequenceDisplayer;
 
     
     public void Init(Patient patient)
     {
         newPatient = patient;
         newTreatmeantSequence = newPatient.GetTreatmeantSequence;
-        sequenceDisplayer.Set(newTreatmeantSequence as IBlockCollection);
+        //sequenceDisplayer.Set(newTreatmeantSequence as IBlockCollection);
+        sequenceDisplayer.Set(this);
     }
     [ContextMenu("Refresh")]
     public void RefreshDisplay()
@@ -36,6 +38,10 @@ public class TreatmentSequenceEditorWindow : IBlockCollectionEditor
             return;
         }
         newTreatmeantSequence.AddToSequence(sequenceBlock);
+    }
+    public override void RemoveTreatment(int index)
+    {
+        newTreatmeantSequence.RemoveFromSequence(index);
     }
 
     public void OpenTreatmentGroupEditor()

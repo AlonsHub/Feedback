@@ -6,12 +6,12 @@ public class TreatmentGroupEditor : IBlockCollectionEditor
 {
     Patient newPatient;
 
-    TreatmentGroup treatmentGroup;
+    public TreatmentGroup treatmentGroup {get => (TreatmentGroup)blockCollection; set => blockCollection = value;}
 
     [SerializeField]
     TreatmentSequenceEditorWindow treatmentSequenceEditorWindow;
     [SerializeField]
-    TreatmentSequenceDisplayer sequenceDisplayer; //also works for treatmentGroup
+    BlockCollectionDisplayer sequenceDisplayer; //also works for treatmentGroup
 
     public System.Action OnSequenceChange;
     public void Init(Patient p)
@@ -22,7 +22,8 @@ public class TreatmentGroupEditor : IBlockCollectionEditor
 
         treatmentGroup.OnSequenceChange += sequenceDisplayer.Display;
 
-        sequenceDisplayer.Set(treatmentGroup as IBlockCollection);
+        //sequenceDisplayer.Set(treatmentGroup as IBlockCollection);
+        sequenceDisplayer.Set(this);
     }
 
     public override void AddTreatmentToCollection(SequenceBlock sequenceBlock)
@@ -34,7 +35,10 @@ public class TreatmentGroupEditor : IBlockCollectionEditor
         }
         treatmentGroup.AddTreatment(sequenceBlock as Treatment);
     }
-
+    public override void RemoveTreatment(int index)
+    {
+        treatmentGroup.RemoveTreatment(index);
+    }
     public void RefreshDisplay()
     {
         sequenceDisplayer.Display();

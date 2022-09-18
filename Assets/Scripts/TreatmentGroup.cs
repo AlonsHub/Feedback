@@ -27,6 +27,11 @@ public class TreatmentGroup : SequenceBlock, IBlockCollection // a group of acti
         treatments.Remove(t);
         OnSequenceChange?.Invoke();
     }
+     public void RemoveTreatment(int index)
+    {
+        treatments.RemoveAt(index);
+        OnSequenceChange?.Invoke();
+    }
 
     public override bool WasPerformed()
     {
@@ -50,14 +55,41 @@ public class TreatmentGroup : SequenceBlock, IBlockCollection // a group of acti
         }
         return toReturn;
     }
+    public List<string> ListAllDisplayStrings()
+    {
+        if (treatments.Count == 0)
+            return null;
+
+        List<string> toReturn = new List<string>();// treatments[0].DisplayString();
+        for (int i = 0; i < treatments.Count; i++)
+        {
+            toReturn.Add(treatments[i].DisplayStringAsPartOfSequence());
+        }
+        return toReturn;
+    }
 
     public List<SequenceBlock> SequenceBlocks()
     {
         return treatments;
     }
 
-    public void OnListChanged(Action func)
+    public void SubToOnListChanged(Action func)
     {
         OnSequenceChange += func;
     }
+
+    public void MoveIndex(int index, int movement)
+    {
+        if (index + movement >= treatments.Count || index + movement < 0)
+        {
+            Debug.LogError("cant move treatment in that direction");
+            return;
+        }
+        SequenceBlock temp = treatments[index];
+        treatments[index] = treatments[index + movement];
+        treatments[index + movement] = temp;
+        OnSequenceChange?.Invoke();
+    }
+
+    
 }

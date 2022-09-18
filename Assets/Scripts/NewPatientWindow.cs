@@ -25,7 +25,7 @@ public class NewPatientWindow : MonoBehaviour
         }
 
         createdPatient = PatientCreator.CreatePatient($"p_{System.DateTime.Now.ToString("h-m")}", patient_name.text, patient_age.text);
-
+        createdPatient.Init(patient_name.text, patient_age.text);
         treatmentSequenceEditorWindow.gameObject.SetActive(true);
         treatmentSequenceEditorWindow.Init(createdPatient);
         //continue work on setting the patient and filling their Treatment Sequence
