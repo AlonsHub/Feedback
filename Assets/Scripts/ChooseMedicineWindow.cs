@@ -33,7 +33,11 @@ public class ChooseMedicineWindow : MonoBehaviour
 
         RefreshDropdownMedicine();
     }
-
+    //private void OnDisable()
+    //{
+    //    //set all fields to nothing
+    //    TEMP_patientData.text = "";
+    //}
     private void RefreshDropdownMedicine()
     {
         dropdown.ClearOptions();
@@ -51,6 +55,7 @@ public class ChooseMedicineWindow : MonoBehaviour
         //Set med's result (as PatientMeasurementData - taken from the PatientMeasurementInput TBF!
 
         treatmentSequenceEditorWindow.AddTreatmentToCollection(med);
+        TEMP_patientData.text = "";
         if (doClose.isOn)
         {
             gameObject.SetActive(false);

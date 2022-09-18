@@ -6,12 +6,17 @@ using TMPro;
 public class NewQuestionWindow : MonoBehaviour
 {
     [SerializeField]
-    TMP_Text questionText;
+    TMP_InputField questionText;
     [SerializeField]
-    TMP_Text replyText;
+    TMP_InputField replyText;
 
     [SerializeField]
     IBlockCollectionEditor treatmentSequenceEditorWindow;
+    //private void OnEnable()
+    //{
+    //    questionText.text = " ";
+    //    replyText.text = " ";
+    //}
     public void ClickOnCreateNew()
     {
         if (string.IsNullOrEmpty(questionText.text) || string.IsNullOrEmpty(replyText.text))
@@ -20,9 +25,14 @@ public class NewQuestionWindow : MonoBehaviour
             return;
         }
         treatmentSequenceEditorWindow.AddTreatmentToCollection(QuestionCreator.CreateQuestion($"q_{System.DateTime.Now.ToString("h-m")}", questionText.text, replyText.text));
-        gameObject.SetActive(false);
 
         //Release addbuttons-lock? tbf
-    }
+        questionText.text = "";
+        replyText.text = "";
 
+        gameObject.SetActive(false);
+
+        //Invoke("Kill", .2f);
+    }
+    //void Kill() => gameObject.SetActive(false);
 }

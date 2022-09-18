@@ -33,6 +33,13 @@ public class BlockCollectionDisplayer : MonoBehaviour //Shows both TreatmentGrou
     //}
     public void Set(IBlockCollectionEditor blockCollectionEditor)
     {
+        if(blockDisplayers!=null && blockDisplayers.Count >0)
+        {
+            for (int i = 0; i < blockDisplayers.Count; i++)
+            {
+                Destroy(blockDisplayers[i].gameObject);
+            }
+        }
         blockDisplayers = new List<BlockDisplayer>();
         //treatmeantSequence = blockCollectionEditor.blockCollection;
         collectionEditor = blockCollectionEditor;
@@ -46,6 +53,15 @@ public class BlockCollectionDisplayer : MonoBehaviour //Shows both TreatmentGrou
         //textBox.text = treatmeantSequence.AllDisplayStrings(); //this should go over members and reuse/instantiate a displayer for them?
 
         List<string> strings = treatmeantSequence.ListAllDisplayStrings();
+        if(strings == null || strings.Count == 0)
+        {
+            foreach(BlockDisplayer bd in blockDisplayers)
+            {
+                Destroy(bd.gameObject);
+            }
+            blockDisplayers.Clear();
+            return;
+        }
         for (int i = 0; i < strings.Count; i++)
         {
             if(i >= blockDisplayers.Count)
