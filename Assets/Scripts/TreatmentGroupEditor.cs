@@ -17,7 +17,7 @@ public class TreatmentGroupEditor : IBlockCollectionEditor
     public void Init(Patient p)
     {
         newPatient = p;
-        treatmentGroup = SO_Creator<TreatmentGroup>.CreateT(p.paitent_name);
+        treatmentGroup = SO_Creator<TreatmentGroup>.CreateT(p.paitent_name, $"{PatientCreator.patientID}/TreatmentGroups/");
         treatmentGroup.Init();
 
         treatmentGroup.OnSequenceChange += sequenceDisplayer.Display;

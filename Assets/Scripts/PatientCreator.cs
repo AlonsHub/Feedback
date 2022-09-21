@@ -5,13 +5,18 @@ using UnityEditor;
 
 public static class PatientCreator 
 {
-    //static readonly string scriptableObjects_FolderPath = "Assets/Scriptables/Patients/";
+    static readonly string scriptableObjects_FolderPath = "Assets/Scriptables/Patients/";
+    public static string patientID;
+
     public static Patient CreatePatient(string newID, string patientName, string age)
     {
-        Patient patient = SO_Creator<Patient>.CreateT(newID);
+        patientID = newID;
+        
+
+        Patient patient = SO_Creator<Patient>.CreateT(patientName, patientName);
 
         //set patient TBF
-        patient.Init(patientName, age);
+        patient.Init(newID, patientName, age);
 
         return patient;
     }

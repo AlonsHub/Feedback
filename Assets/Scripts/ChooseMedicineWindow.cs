@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ChooseMedicineWindow : MonoBehaviour
+public class ChooseMedicineWindow : NewBlockWindow
 {
     [SerializeField]
     UnityEngine.UI.Toggle doClose;
     [SerializeField]
     TMP_Dropdown dropdown;
     [SerializeField]
-    TMP_Text TEMP_patientData; //Look below.
+    TMP_InputField TEMP_patientData; //Look below.
     //PatientMeasurementInput TBF!
     //^^^ much like a displayer, this component will provide string input fields, corresponding to the parameters of patientMeasurementData.
     //^^^ this UI prefab will then easily parse all input fields (each field to int/float/enum etc...) - to create a fresh patientMeasurementData.
@@ -23,7 +23,7 @@ public class ChooseMedicineWindow : MonoBehaviour
     [SerializeField]
     IBlockCollectionEditor treatmentSequenceEditorWindow;
 
-    private void OnEnable()
+    public override void OnEnable()
     {
         if (!medicineDatabase)
         {
@@ -32,12 +32,14 @@ public class ChooseMedicineWindow : MonoBehaviour
         }
 
         RefreshDropdownMedicine();
+        base.OnEnable();
     }
-    //private void OnDisable()
-    //{
-    //    //set all fields to nothing
-    //    TEMP_patientData.text = "";
-    //}
+    public override void OnDisable()
+    {
+        //set all fields to nothing
+        TEMP_patientData.text = "";
+        base.OnDisable();
+    }
     private void RefreshDropdownMedicine()
     {
         dropdown.ClearOptions();
@@ -55,7 +57,6 @@ public class ChooseMedicineWindow : MonoBehaviour
         //Set med's result (as PatientMeasurementData - taken from the PatientMeasurementInput TBF!
 
         treatmentSequenceEditorWindow.AddTreatmentToCollection(med);
-        TEMP_patientData.text = "";
         if (doClose.isOn)
         {
             gameObject.SetActive(false);

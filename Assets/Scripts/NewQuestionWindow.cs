@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class NewQuestionWindow : MonoBehaviour
+public class NewQuestionWindow : NewBlockWindow
 {
     [SerializeField]
     TMP_InputField questionText;
@@ -17,6 +17,12 @@ public class NewQuestionWindow : MonoBehaviour
     //    questionText.text = " ";
     //    replyText.text = " ";
     //}
+    public override void OnDisable()
+    {
+        questionText.text = "";
+        replyText.text = "";
+        base.OnDisable();
+    }
     public void ClickOnCreateNew()
     {
         if (string.IsNullOrEmpty(questionText.text) || string.IsNullOrEmpty(replyText.text))
@@ -24,15 +30,11 @@ public class NewQuestionWindow : MonoBehaviour
             Debug.LogError("both reply and question text needs to be added");
             return;
         }
-        treatmentSequenceEditorWindow.AddTreatmentToCollection(QuestionCreator.CreateQuestion($"q_{System.DateTime.Now.ToString("h-m")}", questionText.text, replyText.text));
+        treatmentSequenceEditorWindow.AddTreatmentToCollection(QuestionCreator.CreateQuestion($"{System.DateTime.Now.ToString("m-s")}", questionText.text, replyText.text));
 
-        //Release addbuttons-lock? tbf
-        questionText.text = "";
-        replyText.text = "";
-
+        //Release other buttons-lock? tbf
+     
         gameObject.SetActive(false);
-
-        //Invoke("Kill", .2f);
     }
-    //void Kill() => gameObject.SetActive(false);
+    
 }

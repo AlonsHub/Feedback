@@ -6,6 +6,7 @@ public class Patient : ScriptableObject
 {
     //patient ID card
     //temp id TBF - needs to be it's own struct of all ID card info
+    public string id;
     [SerializeField]
     public string paitent_name;
     [SerializeField]
@@ -22,16 +23,20 @@ public class Patient : ScriptableObject
 
     //public SequenceBlock SequenceBlock(int i) => 
 
-    public void Init(string newName, string newAge)
+    public void Init(string _id, string newName, string newAge)
     {
+        id = _id;
         paitent_name = newName;
+        PatientCreator.patientID = newName;
         paitent_age = newAge;
         CreateNewTreatmentSequence();
     }
     private void CreateNewTreatmentSequence()
     {
         //paitent_FullTreatmentSequence = CreateInstance<TreatmeantSequence>();
-        paitent_FullTreatmentSequence = SO_Creator<TreatmentSequence>.CreateT($"{paitent_name}TS");
+        //temp
+        
+        paitent_FullTreatmentSequence = SO_Creator<TreatmentSequence>.CreateT(id, paitent_name);
         paitent_FullTreatmentSequence.Init();
     }
 

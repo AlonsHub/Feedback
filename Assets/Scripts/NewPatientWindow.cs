@@ -24,14 +24,26 @@ public class NewPatientWindow : MonoBehaviour
             return;
         }
 
-        createdPatient = PatientCreator.CreatePatient($"p_{System.DateTime.Now.ToString("h-m")}", patient_name.text, patient_age.text);
-        createdPatient.Init(patient_name.text, patient_age.text);
+        //get unique ID placeholder - TBD
+        string s = System.DateTime.Now.ToString("m-s");
+        createdPatient = PatientCreator.CreatePatient(s, patient_name.text, patient_age.text);
+
+        createdPatient.Init(s, patient_name.text, patient_age.text);
         treatmentSequenceEditorWindow.gameObject.SetActive(true);
         treatmentSequenceEditorWindow.Init(createdPatient);
         //continue work on setting the patient and filling their Treatment Sequence
     }
 
     //cancel patient creation - delete all SOs that need to be deleted (keep questions, because why not?)
+    public void CancelPatientCreation()
+    {
+        if(!createdPatient)
+        {
+            Debug.LogError("no patient to cancel!");
+            return;
+        }    
 
+
+    }
 }
 

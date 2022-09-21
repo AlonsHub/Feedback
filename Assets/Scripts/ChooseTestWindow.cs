@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ChooseTestWindow : MonoBehaviour
+public class ChooseTestWindow : NewBlockWindow
 {
 
     [SerializeField]
@@ -15,8 +15,9 @@ public class ChooseTestWindow : MonoBehaviour
 
     [SerializeField]
     IBlockCollectionEditor treatmentSequenceEditorWindow;
-    private void OnEnable()
+    public override void OnEnable()
     {
+        base.OnEnable();
         if (!testDatabase)
         {
             Debug.LogError("Test database not found!");
