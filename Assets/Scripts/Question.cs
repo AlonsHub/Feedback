@@ -1,13 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[System.Serializable, CreateAssetMenu()]
+[CreateAssetMenu()]
 public class Question : Treatment
 {
+    //these get set OnEnable to ensure data is kept and not wiped
+    [SerializeField]
+    string questionContent;
+    [SerializeField]
+    string answerContent;
 
-    [SerializeField]
+
+
+
+    //[SerializeField]
     string questionText;
-    [SerializeField]
+    //[SerializeField]
     string answerText;
     /// <summary>
     /// Inits questions.

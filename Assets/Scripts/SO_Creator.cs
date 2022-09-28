@@ -9,7 +9,7 @@ using UnityEditor;
 /// <typeparam name="T"></typeparam>
 public static class SO_Creator<T> where T : ScriptableObject
 {
-    static readonly string scriptableObjects_FolderPath = "Assets/Scriptables/Patients/";
+    static readonly string scriptableObjects_FolderPath = "Assets/Resources/Patients/";
     /// <summary>
     /// NO SLAHES!
     /// </summary>
