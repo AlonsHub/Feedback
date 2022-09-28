@@ -4,8 +4,8 @@ using UnityEngine;
 [CreateAssetMenu()]
 public class Medicine : Treatment
 {
-    [SerializeField]
-    string medicineName; //with or without dosage (for display purposes only)
+    
+    public string medicineName; //with or without dosage (for display purposes only)
     //Currently dosage is part of the unique ID, so basically 10mg of drug X
 
     /// <summary>
@@ -19,8 +19,9 @@ public class Medicine : Treatment
     string TEMP_patientDataString; //PLACEHOLDER FOR PatientMeasurementData
 
     //Medicine Setter TBF (also a creator? I dont think so)
-    public void SetPatientData(string newDAta) //temp! TBF
+    public void Init(string medNAme, string newDAta) //temp! TBF //working on it
     {
+        medicineName = medNAme;
         TEMP_patientDataString = newDAta;
     }
     public override object Result()
@@ -34,6 +35,6 @@ public class Medicine : Treatment
     }
     public override string TreatmentDisplayNameAsPartOfDatabase()
     {
-        return medicineName;
+        return medicineName;                    
     }
 }

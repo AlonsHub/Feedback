@@ -47,13 +47,15 @@ public class ChooseMedicineWindow : NewBlockWindow
         dropdown.RefreshShownValue();
     }
 
-    public void OnClickAdd()
+    public void OnClickAdd() //Set in inspector
     {
         if (string.IsNullOrEmpty(TEMP_patientData.text))
             return;
 
-        Medicine med = medicineDatabase.GetTreatmentByIndex(dropdown.value);
-        med.SetPatientData(TEMP_patientData.text); //This needs to just send patientMeasurementData tbf
+        Medicine temp= medicineDatabase.GetTreatmentByIndex(dropdown.value);
+        Medicine med = MedicineCreator.CreateMedicine(temp.ID(), temp.medicineName, TEMP_patientData.text);
+
+        //med.Init(TEMP_patientData.text); //This needs to just send patientMeasurementData tbf
         //Set med's result (as PatientMeasurementData - taken from the PatientMeasurementInput TBF!
 
         treatmentSequenceEditorWindow.AddTreatmentToCollection(med);

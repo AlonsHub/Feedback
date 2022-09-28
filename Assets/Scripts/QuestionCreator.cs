@@ -10,15 +10,12 @@ public static class QuestionCreator
 
     public static Question CreateQuestion(string newID, string newQuestion, string newAnswer)
     {
-        ////temp
-        //if (!System.IO.Directory.Exists($"Assets/Scriptables/Patients/{newID}/Questions/"))
-        //{
-        //    System.IO.Directory.CreateDirectory($"Assets/Scriptables/Patients/{newID}/Questions/");
-        //}
+       
         Question q = SO_Creator<Question>.CreateT(newID, $"{PatientCreator.patientID}/Questions/");
+
         q.SetQuestion(newID, newQuestion, newAnswer);
 
-        //TBF add to database!
+        //TBF add new questions to database!
         
         return q;
     }

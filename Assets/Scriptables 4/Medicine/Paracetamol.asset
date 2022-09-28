@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 
   medicineName: "\u05E4\u05E8\u05E6\u05D8\u05DE\u05D5\u05DC"
-  TEMP_patientDataString: int+8
+  TEMP_patientDataString: 
