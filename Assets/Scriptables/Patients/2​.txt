@@ -1,1 +1,0 @@
-{"id":"29-25","paitent_name":"2​","paitent_age":"a​","paitent_FullTreatmentSequence":{"sequenceBlocks":[{},{}]}}

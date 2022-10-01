@@ -76,7 +76,7 @@ public static class PatientCreator
         }
         TreatmentSequence tsTest = DeSerializeTreatmentSequence(toReturn);
 
-        tsTest.AllDisplayStrings();
+        Debug.Log(tsTest.AllDisplayStrings());
 
             return toReturn;
     }

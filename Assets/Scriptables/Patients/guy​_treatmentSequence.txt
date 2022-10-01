@@ -1,5 +1,0 @@
-Question_{"typeString":"Question","id":"12-7","questionContent":"","answerContent":"","questionText":"aa","answerText":"22"}
-Question_{"typeString":"Question","id":"12-10","questionContent":"","answerContent":"","questionText":"aa","answerText":"22"}
-Start_TreatmentGroup
-Question_{"typeString":"Question","id":"12-18","questionContent":"","answerContent":"","questionText":"aa","answerText":"22"}
-End_TreatmentGroup
