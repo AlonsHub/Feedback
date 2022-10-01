@@ -11,7 +11,8 @@ public static class QuestionCreator
     public static Question CreateQuestion(string newID, string newQuestion, string newAnswer)
     {
        
-        Question q = SO_Creator<Question>.CreateT(newID, $"{PatientCreator.patientID}/Questions/");
+        //Question q = SO_Creator<Question>.CreateT(newID, $"{PatientCreator.patientID}/Questions/");
+        Question q = new Question();
 
         q.SetQuestion(newID, newQuestion, newAnswer);
 

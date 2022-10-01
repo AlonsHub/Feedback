@@ -18,7 +18,7 @@ public class ChooseTestWindow : NewBlockWindow
     public override void OnEnable()
     {
         base.OnEnable();
-        if (!testDatabase)
+        if (testDatabase == null)
         {
             Debug.LogError("Test database not found!");
             return;

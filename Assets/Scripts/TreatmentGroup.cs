@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[System.Serializable, CreateAssetMenu()]
+[System.Serializable]
 public class TreatmentGroup : SequenceBlock, IBlockCollection // a group of actions that may be performed in NO particular order
 {
     //List<Treatment> treatments; // => new List<Treatment>() with tests and questions
@@ -11,10 +11,11 @@ public class TreatmentGroup : SequenceBlock, IBlockCollection // a group of acti
     List<SequenceBlock> treatments; //Could be a list of sequence blocks...
   
     public System.Action OnSequenceChange;
-
+    
     public void Init()
     {
         treatments = new List<SequenceBlock>();
+        typeString = GetType().ToString();
     }
 
     public void AddTreatment(SequenceBlock t)

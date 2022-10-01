@@ -25,7 +25,7 @@ public class ChooseMedicineWindow : NewBlockWindow
 
     public override void OnEnable()
     {
-        if (!medicineDatabase)
+        if (medicineDatabase == null)
         {
             Debug.LogError("Test database not found!");
             return;

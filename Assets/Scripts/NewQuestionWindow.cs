@@ -36,5 +36,7 @@ public class NewQuestionWindow : NewBlockWindow
      
         gameObject.SetActive(false);
     }
+
+    
     
 }

@@ -9,10 +9,11 @@ using UnityEngine;
 /// But some treatments are not sequentially consequential - and can happen with no regard to order. Those treatments will be a one TreatmentGroup.
 /// </summary>
 [System.Serializable]
-public class SequenceBlock : ScriptableObject
+public class SequenceBlock
 {
     //Treatment blocks need:
     //bool isComplete;
+    public string typeString;
     public virtual string DisplayStringAsPartOfSequence()
     {
         return "impossible";

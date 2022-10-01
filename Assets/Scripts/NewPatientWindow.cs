@@ -28,16 +28,19 @@ public class NewPatientWindow : MonoBehaviour
         string s = System.DateTime.Now.ToString("m-s");
         createdPatient = PatientCreator.CreatePatient(s, patient_name.text, patient_age.text);
 
-        createdPatient.Init(s, patient_name.text, patient_age.text);
+        //createdPatient.Init(s, patient_name.text, patient_age.text);
         treatmentSequenceEditorWindow.gameObject.SetActive(true);
         treatmentSequenceEditorWindow.Init(createdPatient);
         //continue work on setting the patient and filling their Treatment Sequence
     }
-
+    public void SavePatient()
+    {
+        PatientCreator.SaveCurrentPatient();
+    }
     //cancel patient creation - delete all SOs that need to be deleted (keep questions, because why not?)
     public void CancelPatientCreation()
     {
-        if(!createdPatient)
+        if(createdPatient == null)
         {
             Debug.LogError("no patient to cancel!");
             return;

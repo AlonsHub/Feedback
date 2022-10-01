@@ -1,20 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[System.Serializable, CreateAssetMenu()]
+[System.Serializable]
 public class Test : Treatment
 {
     //public object patientDataDelta; //relevant information to display?
     [SerializeField]
     string testName;
-    [SerializeField]
-    string response;
 
     //TBF test setter?
-
+    public override void Set(string newID, string treatmentType)
+    {
+        base.Set(newID, treatmentType);
+    }
     public override object Result()
     {
-        return response;
+        return "";
     }
     public override string DisplayStringAsPartOfSequence()
     {

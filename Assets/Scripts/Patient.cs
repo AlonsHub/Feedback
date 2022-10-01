@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 //[CreateAssetMenu()]
-public class Patient : ScriptableObject
+[System.Serializable]
+public class Patient 
 {
     //patient ID card
     //temp id TBF - needs to be it's own struct of all ID card info
@@ -18,7 +19,7 @@ public class Patient : ScriptableObject
 
     //Treatment sequence!
     [SerializeField]//?
-    TreatmentSequence paitent_FullTreatmentSequence;
+    public TreatmentSequence paitent_FullTreatmentSequence;
     public TreatmentSequence GetTreatmeantSequence { get=> paitent_FullTreatmentSequence; }
 
     //public SequenceBlock SequenceBlock(int i) => 
@@ -27,7 +28,7 @@ public class Patient : ScriptableObject
     {
         id = _id;
         paitent_name = newName;
-        PatientCreator.patientID = newName;
+        //PatientCreator.patientID = newName;
         paitent_age = newAge;
         CreateNewTreatmentSequence();
     }
@@ -35,8 +36,9 @@ public class Patient : ScriptableObject
     {
         //paitent_FullTreatmentSequence = CreateInstance<TreatmeantSequence>();
         //temp
-        
-        paitent_FullTreatmentSequence = SO_Creator<TreatmentSequence>.CreateT(id, paitent_name);
+
+        //paitent_FullTreatmentSequence = SO_Creator<TreatmentSequence>.CreateT(id, paitent_name);
+        paitent_FullTreatmentSequence = new TreatmentSequence();
         paitent_FullTreatmentSequence.Init();
     }
 

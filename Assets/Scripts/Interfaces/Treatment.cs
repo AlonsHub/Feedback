@@ -16,9 +16,10 @@ public abstract class Treatment : SequenceBlock
     /// Only to be used by inheretors
     /// </summary>
     /// <param name="newID">TBF pull from last ID used somehow</param>
-    protected virtual void Set(string newID)
+    public virtual void Set(string newID, string treatmentType)
     {
         id = newID;
+        typeString = treatmentType;
     }
     //identification of question, test or device
     public virtual string ID()

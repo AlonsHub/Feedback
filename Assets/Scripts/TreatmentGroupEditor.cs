@@ -17,7 +17,8 @@ public class TreatmentGroupEditor : IBlockCollectionEditor
     public void Init(Patient p)
     {
         newPatient = p;
-        treatmentGroup = SO_Creator<TreatmentGroup>.CreateT(p.paitent_name, $"{PatientCreator.patientID}/TreatmentGroups/");
+        //treatmentGroup = SO_Creator<TreatmentGroup>.CreateT(p.paitent_name, $"{PatientCreator.patientID}/TreatmentGroups/");
+        treatmentGroup = new TreatmentGroup();
         treatmentGroup.Init();
 
         treatmentGroup.OnSequenceChange += sequenceDisplayer.Display;
@@ -28,7 +29,7 @@ public class TreatmentGroupEditor : IBlockCollectionEditor
 
     public override void AddTreatmentToCollection(SequenceBlock sequenceBlock)
     {
-        if (!newPatient )
+        if (newPatient ==null)
         {
             Debug.LogError("missing patient");
             return;

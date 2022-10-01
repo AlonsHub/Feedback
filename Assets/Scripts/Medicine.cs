@@ -1,20 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu()]
+[System.Serializable]
 public class Medicine : Treatment
 {
     
     public string medicineName; //with or without dosage (for display purposes only)
     //Currently dosage is part of the unique ID, so basically 10mg of drug X
 
-    /// <summary>
-    /// Should remain EMPTY for instances of Medcine that are in the Database.
-    /// Medicine as part of a treatment sequence should have a "patientMeasurementData" instructions as how to change a patients PatientMeasurementData
-    /// </summary>
-    [SerializeField]
-    object patientData;
-
+  
     [SerializeField]
     string TEMP_patientDataString; //PLACEHOLDER FOR PatientMeasurementData
 

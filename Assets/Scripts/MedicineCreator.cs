@@ -6,7 +6,8 @@ public static class MedicineCreator
 {
     public static Medicine CreateMedicine(string newID, string medicineName, string newPatientData) //don't really need to ID a patients specific medicineSO's
     {
-        Medicine med = SO_Creator<Medicine>.CreateT(medicineName, $"{PatientCreator.patientID}/Medicines/");
+        //Medicine med = SO_Creator<Medicine>.CreateT(medicineName, $"{PatientCreator.patientID}/Medicines/");
+        Medicine med = new Medicine();
 
         med.Init(medicineName, newPatientData);
         return med;

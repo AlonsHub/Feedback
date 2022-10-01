@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TreatmentDB<T> : ScriptableObject where T : Treatment
+public class TreatmentDB<T> where T : Treatment
 {
     // Databases all treatments or is good for creating seperate DB's per type
     [SerializeField]

@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu()]
+[System.Serializable]
 public class Question : Treatment
 {
     //these get set OnEnable to ensure data is kept and not wiped
     [SerializeField]
-    string questionContent;
+     string questionContent;
     [SerializeField]
     string answerContent;
 
@@ -14,9 +14,9 @@ public class Question : Treatment
 
 
     //[SerializeField]
-    string questionText;
+    public string questionText;
     //[SerializeField]
-    string answerText;
+    public string answerText;
     /// <summary>
     /// Inits questions.
     /// Should be called when creating a new question
@@ -27,7 +27,7 @@ public class Question : Treatment
     {
         questionText = newQuestion;
         answerText = newAnswer;
-        base.Set(newID);
+        base.Set(newID, this.GetType().ToString());
         return this;
     }
     public override object Result()

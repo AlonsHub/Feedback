@@ -32,7 +32,7 @@ public class TreatmentSequenceEditorWindow : IBlockCollectionEditor
     //BASE logic for all ADD TREATMENT types
     public override void AddTreatmentToCollection(SequenceBlock sequenceBlock)
     {
-        if (!newPatient || !newPatient.GetTreatmeantSequence)
+        if (newPatient ==null|| newPatient.GetTreatmeantSequence ==null)
         {
             Debug.LogError("missing patient or treatmentsequence");
             return;
