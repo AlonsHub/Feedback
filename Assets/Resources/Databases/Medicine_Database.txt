@@ -1,1 +1,1 @@
-{"treatments":[{"typeString":"","id":"","medicineName":"","TEMP_patientDataString":""}],"tempTreatments":[]}
+{"treatments":[{"typeString":"","id":"","medicineName":"d","TEMP_patientDataString":""},{"typeString":"","id":"","medicineName":"s","TEMP_patientDataString":""},{"typeString":"","id":"","medicineName":"a","TEMP_patientDataString":""}],"tempTreatments":[]}

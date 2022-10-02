@@ -43,13 +43,12 @@ public class TreatmentDB<T> where T : Treatment
             Debug.LogError("No database folder found");
             return;
         }
-
-        if (!File.Exists($"{initialPath}/{GetType()}.txt"))
+        if (!File.Exists($"{initialPath}/{typeof(T)}_Database.txt"))
         {
             Debug.LogError("No database file found");
             return;
         }
-        string datastring = File.ReadAllText($"{initialPath}/{GetType()}.txt");
+        string datastring = File.ReadAllText($"{initialPath}/{typeof(T)}_Database.txt");
         treatments = JsonUtility.FromJson<TreatmentDB<T>>(datastring).treatments;
     }
     public void SaveDatabase()
@@ -65,7 +64,7 @@ public class TreatmentDB<T> where T : Treatment
         //    return;
         //}
 
-        StreamWriter sw = File.CreateText($"{initialPath}/{treatments[0].GetType()}_Database.txt");
+        StreamWriter sw = File.CreateText($"{initialPath}/{typeof(T)}_Database.txt");
 
         string saveString = JsonUtility.ToJson(this);
 

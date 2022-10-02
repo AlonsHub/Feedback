@@ -16,7 +16,8 @@ public class ChooseMedicineWindow : NewBlockWindow
     //^^^ this UI prefab will then easily parse all input fields (each field to int/float/enum etc...) - to create a fresh patientMeasurementData.
     //^^^ use this to initially set all patientMeasurementData on a new patient AND for medicine effect (as a "delta_patientMeasurementData" -> where only "fields to be changed" have value)
 
-
+    [SerializeField]
+    Databases databases;
     [SerializeField]
     MedicineDB medicineDatabase;
 
@@ -25,7 +26,7 @@ public class ChooseMedicineWindow : NewBlockWindow
 
     public override void OnEnable()
     {
-        if (medicineDatabase == null)
+        if (databases == null)
         {
             Debug.LogError("Test database not found!");
             return;
@@ -43,7 +44,7 @@ public class ChooseMedicineWindow : NewBlockWindow
     private void RefreshDropdownMedicine()
     {
         dropdown.ClearOptions();
-        dropdown.AddOptions(medicineDatabase.GetListOfTreatmentNames());
+        dropdown.AddOptions(databases.medicineDB.GetListOfTreatmentNames());
         dropdown.RefreshShownValue();
     }
 
@@ -52,7 +53,7 @@ public class ChooseMedicineWindow : NewBlockWindow
         if (string.IsNullOrEmpty(TEMP_patientData.text))
             return;
 
-        Medicine temp= medicineDatabase.GetTreatmentByIndex(dropdown.value);
+        Medicine temp= databases.medicineDB.GetTreatmentByIndex(dropdown.value);
         Medicine med = MedicineCreator.CreateMedicine(temp.ID(), temp.medicineName, TEMP_patientData.text);
 
         //med.Init(TEMP_patientData.text); //This needs to just send patientMeasurementData tbf

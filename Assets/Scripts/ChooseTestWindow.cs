@@ -14,11 +14,14 @@ public class ChooseTestWindow : NewBlockWindow
     TestDatabase testDatabase;
 
     [SerializeField]
+    Databases databases;
+
+    [SerializeField]
     IBlockCollectionEditor treatmentSequenceEditorWindow;
     public override void OnEnable()
     {
         base.OnEnable();
-        if (testDatabase == null)
+        if (databases == null)
         {
             Debug.LogError("Test database not found!");
             return;
@@ -32,13 +35,13 @@ public class ChooseTestWindow : NewBlockWindow
     private void RefreshDropdownTests()
     {
         dropdown.ClearOptions();
-        dropdown.AddOptions(testDatabase.GetListOfTreatmentNames());
+        dropdown.AddOptions(databases.testDB.GetListOfTreatmentNames());
         dropdown.RefreshShownValue();
     }
 
     public void OnClickAdd()
     {
-        treatmentSequenceEditorWindow.AddTreatmentToCollection(testDatabase.GetTreatmentByIndex(dropdown.value));
+        treatmentSequenceEditorWindow.AddTreatmentToCollection(databases.testDB.GetTreatmentByIndex(dropdown.value));
         if(doClose.isOn)
         {
             gameObject.SetActive(false);

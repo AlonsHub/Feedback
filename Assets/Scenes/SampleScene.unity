@@ -2970,6 +2970,7 @@ MonoBehaviour:
   doClose: {fileID: 1318917334}
   dropdown: {fileID: 1237999501}
   TEMP_patientData: {fileID: 125435751}
+  databases: {fileID: 1632595199}
   treatmentSequenceEditorWindow: {fileID: 1141114854}
 --- !u!1 &270045618
 GameObject:
@@ -9451,6 +9452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doClose: {fileID: 817864326}
   dropdown: {fileID: 1698270956}
+  databases: {fileID: 1632595199}
   treatmentSequenceEditorWindow: {fileID: 1141114854}
 --- !u!1 &963194225
 GameObject:
@@ -13907,6 +13909,7 @@ MonoBehaviour:
   doClose: {fileID: 1267533864}
   dropdown: {fileID: 2087294299}
   TEMP_patientData: {fileID: 156418299}
+  databases: {fileID: 1632595199}
   treatmentSequenceEditorWindow: {fileID: 1202865939}
 --- !u!1 &1424077304
 GameObject:
@@ -16075,6 +16078,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f04f5a93f32c00408cb94b9894bfaaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  temp_questions:
+  - typeString: 
+    id: 
+    questionContent: 
+    answerContent: 
+    questionText: 
+    answerText: 
   temp_tests:
   - typeString: Test
     id: 0
@@ -16085,6 +16095,11 @@ MonoBehaviour:
   - typeString: Test
     id: 1
     testName: Blood Sugar
+  temp_meds:
+  - typeString: 
+    id: 
+    medicineName: 
+    TEMP_patientDataString: 
 --- !u!4 &1632595200
 Transform:
   m_ObjectHideFlags: 0
@@ -21615,6 +21630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doClose: {fileID: 140289742}
   dropdown: {fileID: 909682042}
+  databases: {fileID: 1632595199}
   treatmentSequenceEditorWindow: {fileID: 1202865939}
 --- !u!224 &5915134356312929015
 RectTransform:

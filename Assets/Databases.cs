@@ -13,7 +13,7 @@ public class Databases : MonoBehaviour
     public List<Medicine> temp_meds;
     private void Start()
     {
-        
+        LoadAllDBs();
     }
     //void Start()
     //{
@@ -39,11 +39,18 @@ public class Databases : MonoBehaviour
     [ContextMenu("Load All DBs")]
     public void LoadAllDBs()
     {
+        questionDB = new TreatmentDB<Question>();
         testDB = new TreatmentDB<Test>();
+        medicineDB = new TreatmentDB<Medicine>();
 
 
+
+        questionDB.LoadDatabase();
         testDB.LoadDatabase();
+        medicineDB.LoadDatabase();
+        temp_questions = questionDB.treatments;
         temp_tests = testDB.treatments;
+        temp_meds = medicineDB.treatments;
         //medicineDB.SaveDatabase();
     }
 }
