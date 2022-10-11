@@ -10,9 +10,6 @@ public class Question : Treatment
     [SerializeField]
     string answerContent;
 
-
-
-
     //[SerializeField]
     public string questionText;
     //[SerializeField]

@@ -5,6 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class Patient 
 {
+
+    public NewPatientData patientData;
     //patient ID card
     //temp id TBF - needs to be it's own struct of all ID card info
     public string id;
@@ -14,7 +16,7 @@ public class Patient
     public string paitent_age;
     //patientData - measurements 
     //temp data TBF - needs to be the patientMeasurement class from the project
-    public object patientData;
+    //public object patientData;
 
 
     //Treatment sequence!
