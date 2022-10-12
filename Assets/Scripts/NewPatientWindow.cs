@@ -11,37 +11,37 @@ public class NewPatientWindow : MonoBehaviour
     [SerializeField]
     TMP_Text patient_age;
 
-    [Header("Measurement Input Fields")]
-    [SerializeField]
-    TMP_Text BPM_InputField;
-    [SerializeField]
-    TMP_Text PainLevel_InputField;
-    [SerializeField]
-    TMP_Text RespiratoryRate_InputField;
-    [SerializeField]
-    TMP_Text CincinnatiLevel_InputField;
-    [SerializeField]
-    TMP_Text BloodSugar_InputField;
-    [SerializeField]
-    TMP_Text BloodPressure_InputField;
-    [SerializeField]
-    TMP_Text OxygenSaturation_InputField;
-    [SerializeField]
-    TMP_Text ETCO2_InputField;
-    [SerializeField]
-    TMP_Text AdditionalMuscles_InputField;
-    [SerializeField]
-    TMP_Text Breathing_InputField;
-    [SerializeField]
-    TMP_Text BreathingSounds_InputField;
-    [SerializeField]
-    TMP_Text Speakability_InputField;
-    [SerializeField]
-    TMP_Text Consciousness_InputField;
-    [SerializeField]
-    TMP_Text Pupils_InputField;
-    [SerializeField]
-    TMP_Text SkinState_InputField;
+    //[Header("Measurement Input Fields")]
+    //[SerializeField]
+    //TMP_Text BPM_InputField;
+    //[SerializeField]
+    //TMP_Text PainLevel_InputField;
+    //[SerializeField]
+    //TMP_Text RespiratoryRate_InputField;
+    //[SerializeField]
+    //TMP_Text CincinnatiLevel_InputField;
+    //[SerializeField]
+    //TMP_Text BloodSugar_InputField;
+    //[SerializeField]
+    //TMP_Text BloodPressure_InputField;
+    //[SerializeField]
+    //TMP_Text OxygenSaturation_InputField;
+    //[SerializeField]
+    //TMP_Text ETCO2_InputField;
+    //[SerializeField]
+    //TMP_Text AdditionalMuscles_InputField;
+    //[SerializeField]
+    //TMP_Text Breathing_InputField;
+    //[SerializeField]
+    //TMP_Text BreathingSounds_InputField;
+    //[SerializeField]
+    //TMP_Text Speakability_InputField;
+    //[SerializeField]
+    //TMP_Text Consciousness_InputField;
+    //[SerializeField]
+    //TMP_Text Pupils_InputField;
+    //[SerializeField]
+    //TMP_Text SkinState_InputField;
 
     [SerializeField]
     List<TMP_Text> measurementInputFields;
@@ -55,11 +55,23 @@ public class NewPatientWindow : MonoBehaviour
 
     public void ClickOnCreateNew()
     {
+        //check are REQUIRED(?) fields TBD
+
         if (string.IsNullOrEmpty(patient_name.text) || string.IsNullOrEmpty(patient_age.text))
         {
             Debug.LogError("both patient_name and patient_age needs to be added");
             return;
         }
+
+        PatientMeasurements patientMeasurements = new PatientMeasurements();
+
+        string[] measurementArray = new string[System.Enum.GetValues(typeof(Measurements)).Length];
+        for (int i = 0; i < measurementInputFields.Count; i++)
+        {
+            measurementArray[i] = measurementInputFields[i].text;
+        }
+        patientMeasurements.Initialize(measurementArray);
+   
 
         //get unique ID placeholder - TBD
         string s = System.DateTime.Now.ToString("m-s");
