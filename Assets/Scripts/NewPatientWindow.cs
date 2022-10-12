@@ -5,13 +5,50 @@ using TMPro;
 
 public class NewPatientWindow : MonoBehaviour
 {
+    [Header("Bsaic Info Input Fields")]
     [SerializeField]
     TMP_Text patient_name;
     [SerializeField]
     TMP_Text patient_age;
 
+    [Header("Measurement Input Fields")]
+    [SerializeField]
+    TMP_Text BPM_InputField;
+    [SerializeField]
+    TMP_Text PainLevel_InputField;
+    [SerializeField]
+    TMP_Text RespiratoryRate_InputField;
+    [SerializeField]
+    TMP_Text CincinnatiLevel_InputField;
+    [SerializeField]
+    TMP_Text BloodSugar_InputField;
+    [SerializeField]
+    TMP_Text BloodPressure_InputField;
+    [SerializeField]
+    TMP_Text OxygenSaturation_InputField;
+    [SerializeField]
+    TMP_Text ETCO2_InputField;
+    [SerializeField]
+    TMP_Text AdditionalMuscles_InputField;
+    [SerializeField]
+    TMP_Text Breathing_InputField;
+    [SerializeField]
+    TMP_Text BreathingSounds_InputField;
+    [SerializeField]
+    TMP_Text Speakability_InputField;
+    [SerializeField]
+    TMP_Text Consciousness_InputField;
+    [SerializeField]
+    TMP_Text Pupils_InputField;
+    [SerializeField]
+    TMP_Text SkinState_InputField;
+
+    [SerializeField]
+    List<TMP_Text> measurementInputFields;
+    
+
     Patient createdPatient;
-    //TreatmeantSequence treatmeantSequence =>patient. //Get treatment sequence
+    
     [SerializeField]
     TreatmentSequenceEditorWindow treatmentSequenceEditorWindow;
 
@@ -45,8 +82,6 @@ public class NewPatientWindow : MonoBehaviour
             Debug.LogError("no patient to cancel!");
             return;
         }    
-
-
     }
 }
 

@@ -54,6 +54,9 @@ public class NewPatientData
 
         _patientMeasurement.Initialize(measurements);
     }
+
+    //TBC - Init with ALL required data (measrurements, basic info, models, everythig!)
+
     public string GetMeasurement(int x) => _patientMeasurement.GetMeasurement((Measurements)x);
     public string GetMeasurement(Measurements x) => _patientMeasurement.GetMeasurement(x);
     public void SetPatientMeasurement(string[] x) => _patientMeasurement.SetMeasurementValues(x);
