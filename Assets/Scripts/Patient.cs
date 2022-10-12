@@ -34,6 +34,14 @@ public class Patient
         paitent_age = newAge;
         CreateNewTreatmentSequence();
     }
+    //public void Init(string name, string sureName, int id, int age, string gender, string phoneNum, string medicalCompany, string adress, string complaint, string[] measurements)
+    //{
+    //    id = _id;
+    //    paitent_name = newName;
+    //    //PatientCreator.patientID = newName;
+    //    paitent_age = newAge;
+    //    CreateNewTreatmentSequence();
+    //}
     private void CreateNewTreatmentSequence()
     {
         //paitent_FullTreatmentSequence = CreateInstance<TreatmeantSequence>();

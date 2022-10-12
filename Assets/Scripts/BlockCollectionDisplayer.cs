@@ -7,7 +7,7 @@ public class BlockCollectionDisplayer : MonoBehaviour //Shows both TreatmentGrou
 {
     //TreatmentSequence treatmeantSequence;
     IBlockCollection treatmeantSequence => collectionEditor.blockCollection; //shouldnt be able to set()
-    IBlockCollectionEditor collectionEditor;
+    BlockCollectionEditor collectionEditor;
     //List<SequenceBlock> sequenceBlocks;
     //TBF - make these SequenceBlockDisplayer instead of just one text box with several lines or several textBoxes
     [SerializeField]
@@ -31,7 +31,7 @@ public class BlockCollectionDisplayer : MonoBehaviour //Shows both TreatmentGrou
     //    //blockCollection.OnListChanged() += Display;
 
     //}
-    public void Set(IBlockCollectionEditor blockCollectionEditor)
+    public void Set(BlockCollectionEditor blockCollectionEditor)
     {
         if(blockDisplayers!=null && blockDisplayers.Count >0)
         {

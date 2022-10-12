@@ -11,10 +11,10 @@ public class BlockDisplayer : MonoBehaviour
 
     public int myIndex;
     //IBlockCollection iBlockCollection;
-    IBlockCollectionEditor connectedEditor;
+    BlockCollectionEditor connectedEditor;
     //SequenceBlock myBlock;
     //List<SequenceBlock> listToRemoveMeFrom;
-    public void SetMe(string text, int index, IBlockCollectionEditor blockCollectionEditor)
+    public void SetMe(string text, int index, BlockCollectionEditor blockCollectionEditor)
     {
         displayText.text = text;
         myIndex = index;

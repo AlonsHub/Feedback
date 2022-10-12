@@ -18,43 +18,14 @@ public class NewPatientWindow : MonoBehaviour
      TMP_Text PhoneNumber;
     [SerializeField]
      TMP_Text MedicalCompany, AddressLocation, Complaint;
-    //[Header("Measurement Input Fields")]
-    //[SerializeField]
-    //TMP_Text BPM_InputField;
-    //[SerializeField]
-    //TMP_Text PainLevel_InputField;
-    //[SerializeField]
-    //TMP_Text RespiratoryRate_InputField;
-    //[SerializeField]
-    //TMP_Text CincinnatiLevel_InputField;
-    //[SerializeField]
-    //TMP_Text BloodSugar_InputField;
-    //[SerializeField]
-    //TMP_Text BloodPressure_InputField;
-    //[SerializeField]
-    //TMP_Text OxygenSaturation_InputField;
-    //[SerializeField]
-    //TMP_Text ETCO2_InputField;
-    //[SerializeField]
-    //TMP_Text AdditionalMuscles_InputField;
-    //[SerializeField]
-    //TMP_Text Breathing_InputField;
-    //[SerializeField]
-    //TMP_Text BreathingSounds_InputField;
-    //[SerializeField]
-    //TMP_Text Speakability_InputField;
-    //[SerializeField]
-    //TMP_Text Consciousness_InputField;
-    //[SerializeField]
-    //TMP_Text Pupils_InputField;
-    //[SerializeField]
-    //TMP_Text SkinState_InputField;
+    
 
     [SerializeField]
     List<TMP_Text> measurementInputFields;
     
 
     Patient createdPatient;
+    NewPatientData newCreatedPatient;
     
     [SerializeField]
     TreatmentSequenceEditorWindow treatmentSequenceEditorWindow;
@@ -64,34 +35,54 @@ public class NewPatientWindow : MonoBehaviour
     {
         //check are REQUIRED(?) fields TBD
 
-        //if (string.IsNullOrEmpty(patient_name.text) || string.IsNullOrEmpty(patient_age.text))
-        //{
-        //    Debug.LogError("both patient_name and patient_age needs to be added");
-        //    return;
-        //}
-
+        //Basic info nullorempty checks:
+        if (string.IsNullOrEmpty(Name.text) || string.IsNullOrEmpty(SureName.text) || 
+            string.IsNullOrEmpty(Age.text) || string.IsNullOrEmpty(Gender.text)
+             || string.IsNullOrEmpty(PhoneNumber.text) || string.IsNullOrEmpty(MedicalCompany.text)
+              || string.IsNullOrEmpty(AddressLocation.text) || string.IsNullOrEmpty(Complaint.text))
+        {
+            Debug.LogError("all basic info fields need to be filled!");
+            return;
+        }
+        //Initial Measurements nullorempty checks: in the grabbing bleow
+        
         PatientMeasurements patientMeasurements = new PatientMeasurements();
 
         string[] measurementArray = new string[System.Enum.GetValues(typeof(Measurements)).Length];
         for (int i = 0; i < measurementInputFields.Count; i++)
         {
+            if(string.IsNullOrEmpty(measurementInputFields[i].text)) //Initial Measurements nullorempty checks here!
+            {
+                Debug.LogError("all initial measurement fields need to be filled!");
+
+                return;
+            }
             measurementArray[i] = measurementInputFields[i].text;
         }
-        patientMeasurements.Initialize(measurementArray);
+
+        //patientMeasurements.Initialize(measurementArray);
    
+        //Other Settings section TBD
+        
+
 
         //get unique ID placeholder - TBD
-        string s = System.DateTime.Now.ToString("m-s");
-        //createdPatient = PatientCreator.CreatePatient(s, patient_name.text, patient_age.text);
+        //string s = System.DateTime.Now.ToString("m-s");
 
-        //createdPatient.Init(s, patient_name.text, patient_age.text);
+        //createdPatient = PatientCreator.CreatePatient(s, patient_name.text, patient_age.text);
+        newCreatedPatient = PatientCreator.CreateNewPatient(Name.text, SureName.text, 1, 3, Gender.text, PhoneNumber.text,
+            MedicalCompany.text, AddressLocation.text, Complaint.text, measurementArray);//parsing for ints is temp TBF
+
+
         treatmentSequenceEditorWindow.gameObject.SetActive(true);
-        treatmentSequenceEditorWindow.Init(createdPatient);
+        //treatmentSequenceEditorWindow.Init(createdPatient);
+        treatmentSequenceEditorWindow.Init(newCreatedPatient);
         //continue work on setting the patient and filling their Treatment Sequence
     }
     public void SavePatient()
     {
-        PatientCreator.SaveCurrentPatient();
+        //PatientCreator.SaveCurrentPatient();
+        PatientCreator.SaveNewPatient();
     }
     //cancel patient creation - delete all SOs that need to be deleted (keep questions, because why not?)
     public void CancelPatientCreation()

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TreatmentGroupEditor : IBlockCollectionEditor
+public class TreatmentGroupEditor : BlockCollectionEditor
 {
-    Patient newPatient;
+    NewPatientData newPatient;
 
     public TreatmentGroup treatmentGroup {get => (TreatmentGroup)blockCollection; set => blockCollection = value;}
 
@@ -14,7 +14,19 @@ public class TreatmentGroupEditor : IBlockCollectionEditor
     BlockCollectionDisplayer sequenceDisplayer; //also works for treatmentGroup
 
     public System.Action OnSequenceChange;
-    public void Init(Patient p)
+    //public void Init(Patient p)
+    //{
+    //    newPatient = p;
+    //    //treatmentGroup = SO_Creator<TreatmentGroup>.CreateT(p.paitent_name, $"{PatientCreator.patientID}/TreatmentGroups/");
+    //    treatmentGroup = new TreatmentGroup();
+    //    treatmentGroup.Init();
+
+    //    treatmentGroup.OnSequenceChange += sequenceDisplayer.Display;
+
+    //    //sequenceDisplayer.Set(treatmentGroup as IBlockCollection);
+    //    sequenceDisplayer.Set(this);
+    //}
+    public void Init(NewPatientData p)
     {
         newPatient = p;
         //treatmentGroup = SO_Creator<TreatmentGroup>.CreateT(p.paitent_name, $"{PatientCreator.patientID}/TreatmentGroups/");

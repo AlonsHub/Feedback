@@ -1,0 +1,8 @@
+Question_{"typeString":"Question","id":"57-52","questionContent":"","answerContent":"","questionText":"11","answerText":"222"}
+Test_{"typeString":"Test","id":"0","testName":"Blood Pressure"}
+Start_TreatmentGroup
+Question_{"typeString":"Question","id":"57-58","questionContent":"","answerContent":"","questionText":"ddd","answerText":"ssss"}
+Question_{"typeString":"Question","id":"58-1","questionContent":"","answerContent":"","questionText":"asd","answerText":"asd"}
+_{"typeString":"","id":"","medicineName":"d","TEMP_patientDataString":"asd"}
+End_TreatmentGroup
+Question_{"typeString":"Question","id":"58-8","questionContent":"","answerContent":"","questionText":"asddd","answerText":"ddddd"}

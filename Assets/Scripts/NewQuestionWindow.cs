@@ -11,7 +11,7 @@ public class NewQuestionWindow : NewBlockWindow
     TMP_InputField replyText;
 
     [SerializeField]
-    IBlockCollectionEditor treatmentSequenceEditorWindow;
+    BlockCollectionEditor treatmentSequenceEditorWindow;
     //private void OnEnable()
     //{
     //    questionText.text = " ";

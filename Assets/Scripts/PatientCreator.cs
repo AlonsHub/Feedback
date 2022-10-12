@@ -10,17 +10,37 @@ public static class PatientCreator
     static readonly string scriptableObjects_FolderPath = "Assets/Scriptables/Patients/";
     public static string patientID => currentPatient.id;
     public static Patient currentPatient;
-    public static Patient CreatePatient(string newID, string patientName, string age)
+    public static NewPatientData newPatient;
+    /// <summary>
+    /// DEPRECATED!
+    /// </summary>
+    /// <param name="newID"></param>
+    /// <param name="patientName"></param>
+    /// <param name="age"></param>
+    /// <returns></returns>
+    //public static Patient CreatePatient(string newID, string patientName, string age)
+    //{
+    //    currentPatient= new Patient();
+
+    //    //set patient TBF
+    //    currentPatient.Init(newID, patientName, age);
+        
+    //    //create file already?
+
+
+    //    return currentPatient;
+    //}
+    public static NewPatientData CreateNewPatient(string name, string sureName, int id, int age, string gender, string phoneNum, string medicalCompany, string adress, string complaint, string[] measurements)
     {
-        currentPatient= new Patient();
+        newPatient= new NewPatientData();
 
         //set patient TBF
-        currentPatient.Init(newID, patientName, age);
+        newPatient.Initialize(name, sureName, id, age, gender, phoneNum, medicalCompany, adress, complaint, measurements);
         
         //create file already?
 
 
-        return currentPatient;
+        return newPatient;
     }
 
     public static bool SaveCurrentPatient()
@@ -51,6 +71,36 @@ public static class PatientCreator
 
         return true; //successful save!
     }
+    public static bool SaveNewPatient()
+    {
+        if(newPatient == null)
+        {
+            Debug.LogError("no new patient!");
+            return false;
+        }
+
+        string patientJSON = JsonUtility.ToJson(newPatient);
+        if (!Directory.Exists($"{scriptableObjects_FolderPath}"))
+        {
+            Directory.CreateDirectory($"{scriptableObjects_FolderPath}");
+        }
+        StreamWriter sw= File.CreateText($"{scriptableObjects_FolderPath}/{newPatient.Name}_{newPatient.SureName}.txt");
+
+        sw.Write(patientJSON);
+        sw.Close();
+
+        string treatmentSequence = SerializeTreatmentSequence(newPatient.FullTreatmentSequence);
+
+        StreamWriter sw2 = File.CreateText($"{scriptableObjects_FolderPath}/{newPatient.Name}_{newPatient.SureName}_treatmentSequence.txt");
+
+        sw2.Write(treatmentSequence);
+        sw2.Close();
+
+
+        return true; //successful save!
+    }
+
+
     public static string SerializeTreatmentSequence(TreatmentSequence treatmentSequence)
     {
         string toReturn = "";

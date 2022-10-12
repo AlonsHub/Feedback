@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IBlockCollectionEditor : MonoBehaviour
+public class BlockCollectionEditor : MonoBehaviour
 {
     public IBlockCollection blockCollection;
 

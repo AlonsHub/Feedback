@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TreatmentSequenceEditorWindow : IBlockCollectionEditor
+public class TreatmentSequenceEditorWindow : BlockCollectionEditor 
 {
-    Patient newPatient;
+    //Patient newPatient;
+    NewPatientData newPatient;
 
-    public TreatmentSequence newTreatmeantSequence { get => (TreatmentSequence)blockCollection; set => blockCollection = value; }
-
+    public TreatmentSequence NewTreatmeantSequence { get => (TreatmentSequence)blockCollection; set => blockCollection = value; }
+    //public TreatmentSequence NewTreatmeantSequence;
 
     [SerializeField]
     TreatmentGroupEditor treatmentGroupEditor;
@@ -15,10 +16,17 @@ public class TreatmentSequenceEditorWindow : IBlockCollectionEditor
     BlockCollectionDisplayer sequenceDisplayer;
 
     
-    public void Init(Patient patient)
+    //public void Init(Patient patient)
+    //{
+    //    newPatient = patient;
+    //    newTreatmeantSequence = newPatient.GetTreatmeantSequence;
+    //    //sequenceDisplayer.Set(newTreatmeantSequence as IBlockCollection);
+    //    sequenceDisplayer.Set(this);
+    //}
+    public void Init(NewPatientData patient)
     {
         newPatient = patient;
-        newTreatmeantSequence = newPatient.GetTreatmeantSequence;
+        NewTreatmeantSequence = newPatient.FullTreatmentSequence;
         //sequenceDisplayer.Set(newTreatmeantSequence as IBlockCollection);
         sequenceDisplayer.Set(this);
     }
@@ -32,16 +40,16 @@ public class TreatmentSequenceEditorWindow : IBlockCollectionEditor
     //BASE logic for all ADD TREATMENT types
     public override void AddTreatmentToCollection(SequenceBlock sequenceBlock)
     {
-        if (newPatient ==null|| newPatient.GetTreatmeantSequence ==null)
+        if (newPatient ==null|| newPatient.FullTreatmentSequence ==null)
         {
             Debug.LogError("missing patient or treatmentsequence");
             return;
         }
-        newTreatmeantSequence.AddToSequence(sequenceBlock);
+        NewTreatmeantSequence.AddToSequence(sequenceBlock);
     }
     public override void RemoveTreatment(int index)
     {
-        newTreatmeantSequence.RemoveFromSequence(index);
+        NewTreatmeantSequence.RemoveFromSequence(index);
     }
 
     public void OpenTreatmentGroupEditor()

@@ -17,7 +17,7 @@ public class ChooseTestWindow : NewBlockWindow
     Databases databases;
 
     [SerializeField]
-    IBlockCollectionEditor treatmentSequenceEditorWindow;
+    BlockCollectionEditor treatmentSequenceEditorWindow;
     public override void OnEnable()
     {
         base.OnEnable();

@@ -22,7 +22,7 @@ public class ChooseMedicineWindow : NewBlockWindow
     MedicineDB medicineDatabase;
 
     [SerializeField]
-    IBlockCollectionEditor treatmentSequenceEditorWindow;
+    BlockCollectionEditor treatmentSequenceEditorWindow;
 
     public override void OnEnable()
     {
