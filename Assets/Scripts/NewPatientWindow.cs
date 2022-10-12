@@ -7,10 +7,17 @@ public class NewPatientWindow : MonoBehaviour
 {
     [Header("Bsaic Info Input Fields")]
     [SerializeField]
-    TMP_Text patient_name;
+     TMP_Text Name;
     [SerializeField]
-    TMP_Text patient_age;
-
+     TMP_Text SureName;
+    [SerializeField]
+     TMP_Text Id, Age;
+    [SerializeField]
+     TMP_Text Gender;
+    [SerializeField]
+     TMP_Text PhoneNumber;
+    [SerializeField]
+     TMP_Text MedicalCompany, AddressLocation, Complaint;
     //[Header("Measurement Input Fields")]
     //[SerializeField]
     //TMP_Text BPM_InputField;
@@ -57,11 +64,11 @@ public class NewPatientWindow : MonoBehaviour
     {
         //check are REQUIRED(?) fields TBD
 
-        if (string.IsNullOrEmpty(patient_name.text) || string.IsNullOrEmpty(patient_age.text))
-        {
-            Debug.LogError("both patient_name and patient_age needs to be added");
-            return;
-        }
+        //if (string.IsNullOrEmpty(patient_name.text) || string.IsNullOrEmpty(patient_age.text))
+        //{
+        //    Debug.LogError("both patient_name and patient_age needs to be added");
+        //    return;
+        //}
 
         PatientMeasurements patientMeasurements = new PatientMeasurements();
 
@@ -75,7 +82,7 @@ public class NewPatientWindow : MonoBehaviour
 
         //get unique ID placeholder - TBD
         string s = System.DateTime.Now.ToString("m-s");
-        createdPatient = PatientCreator.CreatePatient(s, patient_name.text, patient_age.text);
+        //createdPatient = PatientCreator.CreatePatient(s, patient_name.text, patient_age.text);
 
         //createdPatient.Init(s, patient_name.text, patient_age.text);
         treatmentSequenceEditorWindow.gameObject.SetActive(true);
