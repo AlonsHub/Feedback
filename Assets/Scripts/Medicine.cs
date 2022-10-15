@@ -9,23 +9,24 @@ public class Medicine : Treatment
     //Currently dosage is part of the unique ID, so basically 10mg of drug X
 
   
-    [SerializeField]
-    string TEMP_patientDataString; //PLACEHOLDER FOR PatientMeasurementData
+    //[SerializeField]
+    //string TEMP_patientDataString; //PLACEHOLDER FOR PatientMeasurementData
+    public PatientMeasurements measurements;
 
     //Medicine Setter TBF (also a creator? I dont think so)
-    public void Init(string medNAme, string newDAta) //temp! TBF //working on it
+    public void Init(string medNAme, PatientMeasurements newMeasurements) //temp! TBF //working on it
     {
         medicineName = medNAme;
-        TEMP_patientDataString = newDAta;
+        measurements = newMeasurements;
     }
     public override object Result()
     {
         //return patientData;
-        return TEMP_patientDataString;
+        return measurements;
     }
     public override string DisplayStringAsPartOfSequence()
     {
-        return $"שם התרופה:{medicineName} \n תגובה לתרופה:{TEMP_patientDataString}";
+        return $"שם התרופה:{medicineName} \n תגובה לתרופה:{measurements}";
     }
     public override string TreatmentDisplayNameAsPartOfDatabase()
     {

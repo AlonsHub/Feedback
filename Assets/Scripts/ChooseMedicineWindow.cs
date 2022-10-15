@@ -11,6 +11,11 @@ public class ChooseMedicineWindow : NewBlockWindow
     TMP_Dropdown dropdown;
     [SerializeField]
     TMP_InputField TEMP_patientData; //Look below.
+
+    [SerializeField]
+    List<TMP_InputField> measurementInputFields;
+    //List<TMP_Text> measurementInputFields;
+
     //PatientMeasurementInput TBF!
     //^^^ much like a displayer, this component will provide string input fields, corresponding to the parameters of patientMeasurementData.
     //^^^ this UI prefab will then easily parse all input fields (each field to int/float/enum etc...) - to create a fresh patientMeasurementData.
@@ -39,6 +44,10 @@ public class ChooseMedicineWindow : NewBlockWindow
     {
         //set all fields to nothing
         TEMP_patientData.text = "";
+        foreach (var item in measurementInputFields)
+        {
+            item.text = "";
+        }
         base.OnDisable();
     }
     private void RefreshDropdownMedicine()
@@ -50,11 +59,26 @@ public class ChooseMedicineWindow : NewBlockWindow
 
     public void OnClickAdd() //Set in inspector
     {
-        if (string.IsNullOrEmpty(TEMP_patientData.text))
-            return;
+        //if (string.IsNullOrEmpty(TEMP_patientData.text))
+        //    return;
 
         Medicine temp= databases.medicineDB.GetTreatmentByIndex(dropdown.value);
-        Medicine med = MedicineCreator.CreateMedicine(temp.ID(), temp.medicineName, TEMP_patientData.text);
+
+        PatientMeasurements patientMeasurements = new PatientMeasurements();
+
+        string[] measurementArray = new string[System.Enum.GetValues(typeof(Measurements)).Length];
+        for (int i = 0; i < measurementInputFields.Count; i++)
+        {
+            if (string.IsNullOrEmpty(measurementInputFields[i].text)) //Initial Measurements nullorempty checks here!
+            {
+                measurementArray[i] = "";
+                continue;
+            }
+            measurementArray[i] = measurementInputFields[i].text;
+        }
+        patientMeasurements.SetMeasurementValues(measurementArray);
+        //Medicine med = MedicineCreator.CreateMedicine(temp.ID(), temp.medicineName, TEMP_patientData.text);
+        Medicine med = MedicineCreator.CreateMedicine(temp.ID(), temp.medicineName, patientMeasurements);
 
         //med.Init(TEMP_patientData.text); //This needs to just send patientMeasurementData tbf
         //Set med's result (as PatientMeasurementData - taken from the PatientMeasurementInput TBF!
