@@ -34,7 +34,6 @@ public static class PatientCreator
     {
         newPatient= new NewPatientData();
 
-        //set patient TBF
         newPatient.Initialize(name, sureName, id, age, gender, phoneNum, medicalCompany, adress, complaint, measurements);
         
         //create file already?
@@ -43,34 +42,34 @@ public static class PatientCreator
         return newPatient;
     }
 
-    public static bool SaveCurrentPatient()
-    {
-        if(currentPatient == null)
-        {
-            Debug.LogError("no current patient!");
-            return false;
-        }
+    //public static bool SaveCurrentPatient()
+    //{
+    //    if(newPatient == null)
+    //    {
+    //        Debug.LogError("no current patient!");
+    //        return false;
+    //    }
 
-        string patientJSON = JsonUtility.ToJson(currentPatient);
-        if (!Directory.Exists($"{scriptableObjects_FolderPath}"))
-        {
-            Directory.CreateDirectory($"{scriptableObjects_FolderPath}");
-        }
-        StreamWriter sw= File.CreateText($"{scriptableObjects_FolderPath}/{currentPatient.paitent_name}.txt");
+    //    string patientJSON = JsonUtility.ToJson(newPatient);
+    //    if (!Directory.Exists($"{scriptableObjects_FolderPath}"))
+    //    {
+    //        Directory.CreateDirectory($"{scriptableObjects_FolderPath}");
+    //    }
+    //    StreamWriter sw= File.CreateText($"{scriptableObjects_FolderPath}/{newPatient.paitent_name}.txt");
 
-        sw.Write(patientJSON);
-        sw.Close();
+    //    sw.Write(patientJSON);
+    //    sw.Close();
 
-        string treatmentSequence = SerializeTreatmentSequence(currentPatient.GetTreatmeantSequence);
+    //    string treatmentSequence = SerializeTreatmentSequence(newPatient.GetTreatmeantSequence);
 
-        StreamWriter sw2 = File.CreateText($"{scriptableObjects_FolderPath}/{currentPatient.paitent_name}_treatmentSequence.txt");
+    //    StreamWriter sw2 = File.CreateText($"{scriptableObjects_FolderPath}/{currentPatient.paitent_name}_treatmentSequence.txt");
 
-        sw2.Write(treatmentSequence);
-        sw2.Close();
+    //    sw2.Write(treatmentSequence);
+    //    sw2.Close();
 
 
-        return true; //successful save!
-    }
+    //    return true; //successful save!
+    //}
     public static bool SaveNewPatient()
     {
         if(newPatient == null)
@@ -84,14 +83,14 @@ public static class PatientCreator
         {
             Directory.CreateDirectory($"{scriptableObjects_FolderPath}");
         }
-        StreamWriter sw= File.CreateText($"{scriptableObjects_FolderPath}/{newPatient.Name}_{newPatient.SureName}.txt");
+        StreamWriter sw= File.CreateText($"{scriptableObjects_FolderPath}{newPatient.Name}_{newPatient.SureName}.txt");
 
         sw.Write(patientJSON);
         sw.Close();
 
         string treatmentSequence = SerializeTreatmentSequence(newPatient.FullTreatmentSequence);
 
-        StreamWriter sw2 = File.CreateText($"{scriptableObjects_FolderPath}/{newPatient.Name}_{newPatient.SureName}_treatmentSequence.txt");
+        StreamWriter sw2 = File.CreateText($"{scriptableObjects_FolderPath}{newPatient.Name}_{newPatient.SureName}_treatmentSequence.txt");
 
         sw2.Write(treatmentSequence);
         sw2.Close();
@@ -130,7 +129,25 @@ public static class PatientCreator
 
             return toReturn;
     }
+    /// <summary>
+    /// path - enter only patient name, with {Name_SureName} WITHOUT .txt
+    /// </summary>
+    /// <param name="patientFullName"></param>
+    public static void LoadPatient(string patientFullName)
+    {
+        
+        string json = File.ReadAllText($"{scriptableObjects_FolderPath}{patientFullName}.txt");
+        NewPatientData newPatientData = JsonUtility.FromJson<NewPatientData>(json);
 
+        string ts_json = File.ReadAllText($"{scriptableObjects_FolderPath}{patientFullName}_treatmentSequence.txt");
+        TreatmentSequence ts = DeSerializeTreatmentSequence(ts_json);
+      
+
+        newPatientData.FullTreatmentSequence = ts;
+
+        newPatient = newPatientData;
+    }
+   
     public static TreatmentSequence DeSerializeTreatmentSequence(string serializedTreatmentSequence)
     {
         TreatmentSequence toReturn = new TreatmentSequence();

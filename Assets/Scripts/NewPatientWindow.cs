@@ -7,21 +7,21 @@ public class NewPatientWindow : MonoBehaviour
 {
     [Header("Bsaic Info Input Fields")]
     [SerializeField]
-     TMP_Text Name;
+    TMP_InputField Name;
     [SerializeField]
-     TMP_Text SureName;
+    TMP_InputField SureName;
     [SerializeField]
-     TMP_Text Id, Age;
+    TMP_InputField Id, Age;
     [SerializeField]
-     TMP_Text Gender;
+    TMP_InputField Gender;
     [SerializeField]
-     TMP_Text PhoneNumber;
+    TMP_InputField PhoneNumber;
     [SerializeField]
-     TMP_Text MedicalCompany, AddressLocation, Complaint;
+    TMP_InputField MedicalCompany, AddressLocation, Complaint;
     
 
     [SerializeField]
-    List<TMP_Text> measurementInputFields;
+    List<TMP_InputField> measurementInputFields;
     
 
     Patient createdPatient;
@@ -30,7 +30,10 @@ public class NewPatientWindow : MonoBehaviour
     [SerializeField]
     TreatmentSequenceEditorWindow treatmentSequenceEditorWindow;
 
-
+    //private void Start()
+    //{
+    //    LoadPatient("ש​_נ​");
+    //}
     public void ClickOnCreateNew()
     {
         //check are REQUIRED(?) fields TBD
@@ -84,14 +87,46 @@ public class NewPatientWindow : MonoBehaviour
         //PatientCreator.SaveCurrentPatient();
         PatientCreator.SaveNewPatient();
     }
-    //cancel patient creation - delete all SOs that need to be deleted (keep questions, because why not?)
-    public void CancelPatientCreation()
+    public void LoadPatient(string patientName)
     {
-        if(createdPatient == null)
+        PatientCreator.LoadPatient(patientName);
+        Invoke("DisplayPatient", 1);
+    }
+    public void DisplayPatient()
+    {
+        if (PatientCreator.newPatient == null)
         {
-            Debug.LogError("no patient to cancel!");
+            Debug.LogError("how?");
             return;
-        }    
+        }
+
+        NewPatientData patient = PatientCreator.newPatient;
+
+        Name.text = patient.Name;
+        SureName.text = patient.SureName;
+        Age.text = patient.Age.ToString();
+        Gender.text = patient.Gender;
+        PhoneNumber.text = patient.PhoneNumber;
+        MedicalCompany.text = patient.MedicalCompany;
+        AddressLocation.text = patient.AddressLocation;
+        Complaint.text = patient.Complaint;
+
+        for (int i = 0; i < measurementInputFields.Count; i++)
+        {
+            measurementInputFields[i].text = patient.GetMeasurement(i);
+            //measurementInputFields[i].ForceMeshUpdate(true);
+        }
+
     }
 }
+    //cancel patient creation - delete all SOs that need to be deleted (keep questions, because why not?)
+    //public void CancelPatientCreation()
+    //{
+    //    if(createdPatient == null)
+    //    {
+    //        Debug.LogError("no patient to cancel!");
+    //        return;
+    //    }    
+    //}
+
 
