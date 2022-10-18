@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PatientCreationSpace;
 
 public enum PatientType { Old, Grown, Kid, }
 public enum MonitorSprites { HeartMonitor, ECG }
