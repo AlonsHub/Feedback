@@ -7,7 +7,7 @@ using System.Linq;
 
 public static class PatientCreator 
 {
-    static readonly string scriptableObjects_FolderPath = "Assets/Scriptables/Patients/";
+    public static readonly string scriptableObjects_FolderPath = "Assets/Scriptables/Patients/";
     public static string patientID => currentPatient.id;
     public static Patient currentPatient;
     public static NewPatientData newPatient;
@@ -129,6 +129,8 @@ public static class PatientCreator
 
             return toReturn;
     }
+
+    public static System.Action OnLoadPatient;
     /// <summary>
     /// path - enter only patient name, with {Name_SureName} WITHOUT .txt
     /// </summary>
@@ -146,6 +148,7 @@ public static class PatientCreator
         newPatientData.FullTreatmentSequence = ts;
 
         newPatient = newPatientData;
+        OnLoadPatient?.Invoke();
     }
    
     public static TreatmentSequence DeSerializeTreatmentSequence(string serializedTreatmentSequence)
@@ -215,6 +218,26 @@ public static class PatientCreator
             }
         }
             return toReturn;
+    }
+
+    public static List<string> GetExistingPatientNames()
+    {
+        List<string> toReturn = new List<string>();
+
+        if (!Directory.Exists(scriptableObjects_FolderPath))
+        {
+            Debug.LogError("Patient folder not found!");
+            return null;
+        }
+        var collection = Directory.GetFiles(scriptableObjects_FolderPath, "*.txt");
+        toReturn = collection.Where(x => !x.Contains("treatmentSequence")).ToList();
+        for (int i = 0; i < toReturn.Count; i++)
+        {
+            toReturn[i] = Path.GetFileName(toReturn[i]);
+            toReturn[i] = toReturn[i].Substring(0, toReturn[i].Length - 4); //removes ".txt"
+        }
+
+        return toReturn;
     }
     //public static Patient CreatePatient(string newID, string patientName, string age)
     //{

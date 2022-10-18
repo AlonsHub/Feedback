@@ -9,8 +9,8 @@ public class ChooseMedicineWindow : NewBlockWindow
     UnityEngine.UI.Toggle doClose;
     [SerializeField]
     TMP_Dropdown dropdown;
-    [SerializeField]
-    TMP_InputField TEMP_patientData; //Look below.
+    //[SerializeField]
+    //TMP_InputField TEMP_patientData; //Look below.
 
     [SerializeField]
     List<TMP_InputField> measurementInputFields;
@@ -43,7 +43,7 @@ public class ChooseMedicineWindow : NewBlockWindow
     public override void OnDisable()
     {
         //set all fields to nothing
-        TEMP_patientData.text = "";
+        //TEMP_patientData.text = "";
         foreach (var item in measurementInputFields)
         {
             item.text = "";

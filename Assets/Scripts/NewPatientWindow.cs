@@ -34,6 +34,15 @@ public class NewPatientWindow : MonoBehaviour
     //{
     //    LoadPatient("ש​_נ​");
     //}
+    private void OnEnable()
+    {
+        PatientCreator.OnLoadPatient += DisplayPatient;
+    }
+    private void OnDisable()
+    {
+        PatientCreator.OnLoadPatient -= DisplayPatient;
+    }
+
     public void ClickOnCreateNew()
     {
         //check are REQUIRED(?) fields TBD
@@ -90,7 +99,7 @@ public class NewPatientWindow : MonoBehaviour
     public void LoadPatient(string patientName)
     {
         PatientCreator.LoadPatient(patientName);
-        Invoke("DisplayPatient", 1);
+        //Invoke("DisplayPatient", 1);
     }
     public void DisplayPatient()
     {
