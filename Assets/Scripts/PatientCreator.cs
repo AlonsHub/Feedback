@@ -11,25 +11,24 @@ public static class PatientCreator
     public static string patientID => currentPatient.id;
     public static Patient currentPatient;
     public static NewPatientData newPatient;
+
+
+    public static System.Action OnLoadPatient;
+    public static System.Action OnPatientClear;
+
+
     /// <summary>
-    /// DEPRECATED!
+    /// Returns true if a loaded patient was cleared.
+    /// False if there was no loaded patient to clear.
     /// </summary>
-    /// <param name="newID"></param>
-    /// <param name="patientName"></param>
-    /// <param name="age"></param>
     /// <returns></returns>
-    //public static Patient CreatePatient(string newID, string patientName, string age)
-    //{
-    //    currentPatient= new Patient();
-
-    //    //set patient TBF
-    //    currentPatient.Init(newID, patientName, age);
-        
-    //    //create file already?
-
-
-    //    return currentPatient;
-    //}
+    public static bool ClearLoadedPatient()
+    {
+        bool wasCleared = (newPatient != null);
+        newPatient = null;
+        OnPatientClear?.Invoke();
+        return wasCleared;
+    }
     public static NewPatientData CreateNewPatient(string name, string sureName, int id, int age, string gender, string phoneNum, string medicalCompany, string adress, string complaint, string[] measurements)
     {
         newPatient= new NewPatientData();
@@ -130,7 +129,6 @@ public static class PatientCreator
             return toReturn;
     }
 
-    public static System.Action OnLoadPatient;
     /// <summary>
     /// path - enter only patient name, with {Name_SureName} WITHOUT .txt
     /// </summary>

@@ -42,6 +42,29 @@ public class NewPatientWindow : MonoBehaviour
     {
         PatientCreator.OnLoadPatient -= DisplayPatient;
     }
+    /// <summary>
+    /// this also clears the currently loaded patient
+    /// </summary>
+    public void ClearPatientInfoFields() //inspector button
+    {
+        Name.text = "";
+        SureName.text = "";
+        Age.text = "";
+        Gender.text ="";
+        PhoneNumber.text ="";
+        MedicalCompany.text ="";
+        AddressLocation.text = "";
+        Complaint.text = "";
+
+        PatientCreator.ClearLoadedPatient();
+    }
+    public void ClearPatientMeasurementFields()//inspector button
+    {
+        foreach (var item in measurementInputFields)
+        {
+            item.text = "";
+        }
+    }
 
     public void ClickOnCreateNew()
     {
@@ -82,7 +105,7 @@ public class NewPatientWindow : MonoBehaviour
         //string s = System.DateTime.Now.ToString("m-s");
 
         //createdPatient = PatientCreator.CreatePatient(s, patient_name.text, patient_age.text);
-        newCreatedPatient = PatientCreator.CreateNewPatient(Name.text, SureName.text, 1, 3, Gender.text, PhoneNumber.text,
+        newCreatedPatient = PatientCreator.CreateNewPatient(Name.text, SureName.text, 1, 3, Gender.text, PhoneNumber.text, //TBF
             MedicalCompany.text, AddressLocation.text, Complaint.text, measurementArray);//parsing for ints is temp TBF
 
 
@@ -91,6 +114,42 @@ public class NewPatientWindow : MonoBehaviour
         treatmentSequenceEditorWindow.Init(newCreatedPatient);
         //continue work on setting the patient and filling their Treatment Sequence
     }
+    public void ClickOnEditLoaded()
+    {
+        //If measurements were changed! TBF
+        if (string.IsNullOrEmpty(Name.text) || string.IsNullOrEmpty(SureName.text) ||
+            string.IsNullOrEmpty(Age.text) || string.IsNullOrEmpty(Gender.text)
+             || string.IsNullOrEmpty(PhoneNumber.text) || string.IsNullOrEmpty(MedicalCompany.text)
+              || string.IsNullOrEmpty(AddressLocation.text) || string.IsNullOrEmpty(Complaint.text))
+        {
+            Debug.LogError("all basic info fields need to be filled!");
+            return;
+        }
+        //Initial Measurements nullorempty checks: in the grabbing bleow
+
+        PatientMeasurements patientMeasurements = new PatientMeasurements();
+
+        string[] measurementArray = new string[System.Enum.GetValues(typeof(Measurements)).Length];
+        for (int i = 0; i < measurementInputFields.Count; i++)
+        {
+            if (string.IsNullOrEmpty(measurementInputFields[i].text)) //Initial Measurements nullorempty checks here!
+            {
+                Debug.LogError("all initial measurement fields need to be filled!");
+
+                return;
+            }
+            measurementArray[i] = measurementInputFields[i].text;
+        }
+        PatientCreator.newPatient.SetPatientMeasurement(measurementArray); //sets new measurements
+
+
+        treatmentSequenceEditorWindow.gameObject.SetActive(true);
+        //treatmentSequenceEditorWindow.Init(createdPatient);
+        treatmentSequenceEditorWindow.Init(PatientCreator.newPatient);
+        //continue work on setting the patient and filling their Treatment Sequence
+    }
+
+
     public void SavePatient()
     {
         //PatientCreator.SaveCurrentPatient();

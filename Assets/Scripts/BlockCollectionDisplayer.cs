@@ -43,8 +43,8 @@ public class BlockCollectionDisplayer : MonoBehaviour //Shows both TreatmentGrou
         blockDisplayers = new List<BlockDisplayer>();
         //treatmeantSequence = blockCollectionEditor.blockCollection;
         collectionEditor = blockCollectionEditor;
-
         treatmeantSequence.SubToOnListChanged(Display);
+        Display();
     }
 
     public void Display()

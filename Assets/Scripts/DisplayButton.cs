@@ -12,22 +12,20 @@ public class DisplayButton : MonoBehaviour
     TMP_Text text;
     //[SerializeField]
     //Button button;
-
+    PatientRoster patientRoster;
     string fileNameToLoad;
 
-    public void Set(string patientName)
+    public void Set(string patientName, PatientRoster pr)
     {
+        patientRoster = pr;
         text.text = patientName;
         fileNameToLoad = patientName;
     }
 
+
+
     public void LoadThisPatient() // called in inspector by button
     {
-        if(string.IsNullOrEmpty(fileNameToLoad))
-        {
-            Debug.LogError("no file name");
-            return;
-        }
-        PatientCreator.LoadPatient(fileNameToLoad);
+        patientRoster.LoadPatient(fileNameToLoad);
     }
 }
